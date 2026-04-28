@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deep Learning — HNAI.Researcher</title>
+  <meta name="description" content="Learn Deep Learning with PyTorch — neural networks, CNNs, RNNs, transformers and GANs. Free course by HNAI.Researcher."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #3b6ef8;
+      --dark: #0a1628;
+      --navy: #1e3a6e;
+      --slate: #64748b;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --bg: #f0f4ff;
+      --white: #ffffff;
+      --green: #22c55e;
+      --course-color: #dc2626;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--course-color); border-radius: 10px; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 14px 48px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-mark { width: 36px; height: 36px; background: var(--dark); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .brand-mark svg { width: 20px; height: 20px; }
+    .brand-main { font-size: 15px; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; }
+    .brand-main span { color: var(--course-color); }
+    .brand-sub { font-size: 9px; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .brand-wordmark { display: flex; flex-direction: column; line-height: 1.2; }
+    .nav-back { font-size: 13px; color: var(--slate); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--course-color); }
+    .btn-primary { font-size: 12px; background: var(--course-color); color: var(--white); border: none; border-radius: 7px; padding: 8px 18px; font-weight: 700; cursor: pointer; transition: background 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; text-decoration: none; }
+    .btn-primary:hover { opacity: 0.88; }
+    .course-hero {
+      background: var(--white); padding: 56px 48px 48px;
+      border-bottom: 0.5px solid var(--border); position: relative; overflow: hidden;
+    }
+    .hero-dots { position: absolute; inset: 0; background-image: radial-gradient(#c7d4f5 1.3px, transparent 1.3px); background-size: 24px 24px; opacity: 0.5; }
+    .hero-glow { position: absolute; top: -80px; right: -60px; width: 400px; height: 400px; background: radial-gradient(circle, #fee2e2 0%, transparent 68%); opacity: 0.6; }
+    .course-hero-inner { position: relative; z-index: 2; max-width: 720px; }
+    .breadcrumb { font-size: 12px; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+    .breadcrumb a { color: var(--course-color); text-decoration: none; font-weight: 600; }
+    .course-badge { display: inline-flex; align-items: center; gap: 8px; background: #fef2f2; border: 0.5px solid #fecaca; border-radius: 20px; padding: 5px 14px; margin-bottom: 18px; }
+    .course-badge-text { font-size: 11px; color: var(--course-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .course-hero h1 { font-size: 42px; font-weight: 800; color: var(--dark); letter-spacing: -0.03em; margin-bottom: 14px; line-height: 1.1; }
+    .course-hero h1 span { color: var(--course-color); }
+    .course-desc { font-size: 15px; color: var(--slate); line-height: 1.8; max-width: 580px; margin-bottom: 28px; }
+    .course-meta-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .cmeta-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--slate); font-weight: 500; }
+    .cmeta-item span { font-size: 16px; }
+    .progress-bar-wrap { background: var(--dark); padding: 16px 48px; display: flex; align-items: center; gap: 20px; }
+    .progress-label { font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
+    .progress-track { flex: 1; height: 5px; background: var(--navy); border-radius: 10px; max-width: 300px; }
+    .progress-fill { height: 100%; border-radius: 10px; background: var(--course-color); width: 0%; transition: width 1s ease; }
+    .progress-pct { font-size: 11px; color: var(--course-color); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+    .course-layout { display: grid; grid-template-columns: 280px 1fr; gap: 0; min-height: calc(100vh - 200px); }
+    @media (max-width: 900px) { .course-layout { grid-template-columns: 1fr; } }
+    .sidebar { background: var(--white); border-right: 0.5px solid var(--border); padding: 28px 0; position: sticky; top: 65px; height: fit-content; max-height: calc(100vh - 65px); overflow-y: auto; }
+    .sidebar-title { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; padding: 0 20px; margin-bottom: 14px; }
+    .lesson-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 20px; cursor: pointer; transition: background 0.15s;
+      border-left: 3px solid transparent; text-decoration: none;
+    }
+    .lesson-item:hover { background: var(--bg); }
+    .lesson-item.active { background: #fef2f2; border-left-color: var(--course-color); }
+    .lesson-num { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--muted); flex-shrink: 0; margin-top: 1px; font-family: 'JetBrains Mono', monospace; }
+    .lesson-item.active .lesson-num { background: var(--course-color); border-color: var(--course-color); color: var(--white); }
+    .lesson-item.done .lesson-num { background: var(--green); border-color: var(--green); color: var(--white); }
+    .lesson-info { flex: 1; }
+    .lesson-name { font-size: 12px; font-weight: 600; color: var(--dark); line-height: 1.4; margin-bottom: 3px; }
+    .lesson-item.active .lesson-name { color: var(--course-color); }
+    .lesson-dur { font-size: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .sidebar-section { margin-top: 8px; }
+    .sidebar-section-title { font-size: 9px; font-weight: 700; color: var(--course-color); text-transform: uppercase; letter-spacing: 0.1em; padding: 10px 20px 4px; background: #f8faff; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    .course-main { padding: 36px 48px; }
+    @media (max-width: 768px) { .course-main { padding: 24px 20px; } .course-hero { padding: 40px 20px 32px; } nav { padding: 12px 20px; } .progress-bar-wrap { padding: 14px 20px; } }
+    .lesson-header { margin-bottom: 28px; }
+    .lesson-tag { font-size: 10px; font-weight: 700; color: var(--course-color); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
+    .lesson-title { font-size: 26px; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; margin-bottom: 10px; }
+    .lesson-subtitle { font-size: 14px; color: var(--slate); line-height: 1.7; max-width: 600px; }
+    .video-wrap {
+      position: relative; width: 100%; padding-bottom: 56.25%;
+      border-radius: 14px; overflow: hidden; background: #000;
+      margin-bottom: 28px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .learn-box { background: var(--white); border: 0.5px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 24px; }
+    .learn-box-title { font-size: 13px; font-weight: 800; color: var(--dark); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .learn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    @media (max-width: 600px) { .learn-grid { grid-template-columns: 1fr; } }
+    .learn-item { display: flex; align-items: flex-start; gap: 9px; font-size: 12px; color: var(--slate); line-height: 1.5; }
+    .learn-check { width: 18px; height: 18px; border-radius: 50%; background: #fef2f2; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 9px; color: var(--course-color); font-weight: 800; margin-top: 1px; }
+    .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding-top: 24px; border-top: 0.5px solid var(--border); flex-wrap: wrap; gap: 12px; }
+    .nav-btn { display: flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 9px; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s; border: 1.5px solid var(--border); color: var(--slate); background: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; }
+    .nav-btn:hover { border-color: var(--course-color); color: var(--course-color); }
+    .nav-btn.next { background: var(--course-color); color: var(--white); border-color: var(--course-color); }
+    .nav-btn.next:hover { opacity: 0.88; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="4" fill="#dc2626"/>
+        <circle cx="10" cy="2.5" r="2" fill="#fca5a5"/>
+        <circle cx="10" cy="17.5" r="2" fill="#fca5a5"/>
+        <circle cx="2.5" cy="10" r="2" fill="#fca5a5"/>
+        <circle cx="17.5" cy="10" r="2" fill="#fca5a5"/>
+        <line x1="10" y1="4.5" x2="10" y2="6" stroke="#dc2626" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="10" y1="14" x2="10" y2="15.5" stroke="#dc2626" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="4.5" y1="10" x2="6" y2="10" stroke="#dc2626" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="14" y1="10" x2="15.5" y2="10" stroke="#dc2626" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="brand-wordmark">
+      <div class="brand-main">HNAI<span>.Researcher</span></div>
+      <div class="brand-sub">Humera Noor · AI Lab</div>
+    </div>
+  </a>
+  <a href="index.html#courses" class="nav-back">← Back to Courses</a>
+  <a href="index.html#courses" class="btn-primary">All Courses →</a>
+</nav>
+<div class="course-hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="course-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> → <a href="index.html#courses">Courses</a> → Deep Learning</div>
+    <div class="course-badge"><span class="course-badge-text">🔗 Advanced · Free · Open Source</span></div>
+    <h1>Deep <span>Learning</span></h1>
+    <p class="course-desc">Build neural networks from scratch with PyTorch — CNNs, RNNs, Transformers and GANs. Train real models on real data.</p>
+    <div class="course-meta-row">
+      <div class="cmeta-item"><span>📚</span> 22 Lessons</div>
+      <div class="cmeta-item"><span>⏱️</span> ~22 Hours Total</div>
+      <div class="cmeta-item"><span>🎯</span> Advanced</div>
+      <div class="cmeta-item"><span>🆓</span> Completely Free</div>
+      <div class="cmeta-item"><span>📺</span> YouTube Videos</div>
+    </div>
+  </div>
+</div>
+<div class="progress-bar-wrap">
+  <span class="progress-label">// your progress</span>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="progress-pct" id="progressPct">0% complete</span>
+</div>
+<div class="course-layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">Course Lessons</div>
+    
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 1 — Neural Network Foundations</div>
+      <a class="lesson-item active" onclick="loadLesson(0)" href="#">
+        <div class="lesson-num">1</div>
+        <div class="lesson-info"><div class="lesson-name">What is Deep Learning?</div><div class="lesson-dur">45min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(1)" href="#">
+        <div class="lesson-num">2</div>
+        <div class="lesson-info"><div class="lesson-name">The Perceptron & Neural Nets</div><div class="lesson-dur">1h 0min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(2)" href="#">
+        <div class="lesson-num">3</div>
+        <div class="lesson-info"><div class="lesson-name">Activation Functions Explained</div><div class="lesson-dur">40min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(3)" href="#">
+        <div class="lesson-num">4</div>
+        <div class="lesson-info"><div class="lesson-name">Backpropagation & Gradient Descent</div><div class="lesson-dur">1h 10min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 2 — PyTorch Fundamentals</div>
+      <a class="lesson-item " onclick="loadLesson(4)" href="#">
+        <div class="lesson-num">5</div>
+        <div class="lesson-info"><div class="lesson-name">PyTorch Setup & Tensors</div><div class="lesson-dur">55min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(5)" href="#">
+        <div class="lesson-num">6</div>
+        <div class="lesson-info"><div class="lesson-name">Building Your First Neural Network</div><div class="lesson-dur">1h 0min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(6)" href="#">
+        <div class="lesson-num">7</div>
+        <div class="lesson-info"><div class="lesson-name">Training Loop in PyTorch</div><div class="lesson-dur">45min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 3 — Convolutional Neural Networks</div>
+      <a class="lesson-item " onclick="loadLesson(7)" href="#">
+        <div class="lesson-num">8</div>
+        <div class="lesson-info"><div class="lesson-name">CNNs Explained — How Computers See</div><div class="lesson-dur">1h 5min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(8)" href="#">
+        <div class="lesson-num">9</div>
+        <div class="lesson-info"><div class="lesson-name">Building a CNN with PyTorch</div><div class="lesson-dur">1h 0min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(9)" href="#">
+        <div class="lesson-num">10</div>
+        <div class="lesson-info"><div class="lesson-name">Transfer Learning & Fine-Tuning</div><div class="lesson-dur">55min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(10)" href="#">
+        <div class="lesson-num">11</div>
+        <div class="lesson-info"><div class="lesson-name">Image Classification Project</div><div class="lesson-dur">1h 20min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 4 — Recurrent Neural Networks</div>
+      <a class="lesson-item " onclick="loadLesson(11)" href="#">
+        <div class="lesson-num">12</div>
+        <div class="lesson-info"><div class="lesson-name">RNNs & Sequence Modeling</div><div class="lesson-dur">1h 0min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(12)" href="#">
+        <div class="lesson-num">13</div>
+        <div class="lesson-info"><div class="lesson-name">LSTMs & GRUs Explained</div><div class="lesson-dur">55min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(13)" href="#">
+        <div class="lesson-num">14</div>
+        <div class="lesson-info"><div class="lesson-name">Sentiment Analysis with RNN</div><div class="lesson-dur">1h 10min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 5 — Advanced Architectures</div>
+      <a class="lesson-item " onclick="loadLesson(14)" href="#">
+        <div class="lesson-num">15</div>
+        <div class="lesson-info"><div class="lesson-name">Attention Mechanism & Self-Attention</div><div class="lesson-dur">1h 5min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(15)" href="#">
+        <div class="lesson-num">16</div>
+        <div class="lesson-info"><div class="lesson-name">The Transformer Architecture</div><div class="lesson-dur">1h 20min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(16)" href="#">
+        <div class="lesson-num">17</div>
+        <div class="lesson-info"><div class="lesson-name">Autoencoders & Variational Autoencoders</div><div class="lesson-dur">55min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(17)" href="#">
+        <div class="lesson-num">18</div>
+        <div class="lesson-info"><div class="lesson-name">Generative Adversarial Networks (GANs)</div><div class="lesson-dur">1h 10min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 6 — Projects</div>
+      <a class="lesson-item " onclick="loadLesson(18)" href="#">
+        <div class="lesson-num">19</div>
+        <div class="lesson-info"><div class="lesson-name">Deep Learning Capstone Project</div><div class="lesson-dur">1h 30min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(19)" href="#">
+        <div class="lesson-num">20</div>
+        <div class="lesson-info"><div class="lesson-name">Deploying a Deep Learning Model</div><div class="lesson-dur">1h 0min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(20)" href="#">
+        <div class="lesson-num">21</div>
+        <div class="lesson-info"><div class="lesson-name">Model Optimization & Quantization</div><div class="lesson-dur">45min</div></div>
+      </a>
+    </div>
+  </aside>
+  <main class="course-main">
+    <div class="lesson-header">
+      <div class="lesson-tag" id="lessonTag"></div>
+      <div class="lesson-title" id="lessonTitle"></div>
+      <div class="lesson-subtitle" id="lessonSubtitle"></div>
+    </div>
+    <div class="video-wrap">
+      <iframe id="videoFrame" src="" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="learn-box">
+      <div class="learn-box-title">✅ What You'll Learn in This Lesson</div>
+      <div class="learn-grid" id="learnGrid"></div>
+    </div>
+    <div class="lesson-nav">
+      <button class="nav-btn" id="prevBtn" onclick="changeLesson(-1)">← Previous</button>
+      <button class="nav-btn next" id="nextBtn" onclick="changeLesson(1)">Next Lesson →</button>
+    </div>
+  </main>
+</div>
+<script>
+  const lessons = [
+  {
+    "tag": "Lesson 1 of 22 · Module 1 — Neural Network Foundations",
+    "title": "What is Deep Learning?",
+    "subtitle": "Understand how deep learning differs from classical ML and why it has revolutionized AI in the past decade.",
+    "video": "aircAruvnKk",
+    "learn": [
+      "ML vs Deep Learning",
+      "Why deep learning works",
+      "The hierarchy of AI",
+      "GPU & compute requirements",
+      "Real-world DL applications",
+      "What's next in the course"
+    ]
+  },
+  {
+    "tag": "Lesson 2 of 22 · Module 1 — Neural Network Foundations",
+    "title": "The Perceptron & Neural Nets",
+    "subtitle": "Learn how artificial neurons mimic biological ones, and how stacking them creates powerful networks.",
+    "video": "CqOfi41LfDw",
+    "learn": [
+      "Biological vs artificial neuron",
+      "The perceptron model",
+      "Weighted inputs & bias",
+      "Layers: input, hidden, output",
+      "Forward pass explained",
+      "Activation and output"
+    ]
+  },
+  {
+    "tag": "Lesson 3 of 22 · Module 1 — Neural Network Foundations",
+    "title": "Activation Functions Explained",
+    "subtitle": "ReLU, sigmoid, tanh and more — understand why these functions are the secret sauce of deep learning.",
+    "video": "m0pIlLfpXWE",
+    "learn": [
+      "Why activation functions?",
+      "Sigmoid & its problems",
+      "Tanh function",
+      "ReLU & Leaky ReLU",
+      "Softmax for classification",
+      "Choosing the right activation"
+    ]
+  },
+  {
+    "tag": "Lesson 4 of 22 · Module 1 — Neural Network Foundations",
+    "title": "Backpropagation & Gradient Descent",
+    "subtitle": "The algorithm that trains every neural network — understand how models learn from errors.",
+    "video": "Ilg3gGewQ5U",
+    "learn": [
+      "The loss function",
+      "Chain rule of calculus",
+      "Forward & backward pass",
+      "Learning rate explained",
+      "Optimizers: SGD, Adam",
+      "Vanishing gradient problem"
+    ]
+  },
+  {
+    "tag": "Lesson 5 of 22 · Module 2 — PyTorch Fundamentals",
+    "title": "PyTorch Setup & Tensors",
+    "subtitle": "Install PyTorch and master tensors — the fundamental data structure powering all deep learning.",
+    "video": "exaWOE8jvy8",
+    "learn": [
+      "Installing PyTorch",
+      "Tensors vs NumPy arrays",
+      "Tensor operations",
+      "Moving to GPU (CUDA)",
+      "Autograd explained",
+      "PyTorch ecosystem overview"
+    ]
+  },
+  {
+    "tag": "Lesson 6 of 22 · Module 2 — PyTorch Fundamentals",
+    "title": "Building Your First Neural Network",
+    "subtitle": "Code a neural network from scratch in PyTorch — your first real deep learning model.",
+    "video": "mozBidd58XI",
+    "learn": [
+      "nn.Module class",
+      "Defining layers",
+      "Forward method",
+      "Loss functions in PyTorch",
+      "Model parameters",
+      "Inspecting your model"
+    ]
+  },
+  {
+    "tag": "Lesson 7 of 22 · Module 2 — PyTorch Fundamentals",
+    "title": "Training Loop in PyTorch",
+    "subtitle": "Write the training loop every ML engineer uses — optimizer step, loss backward, and evaluation.",
+    "video": "kQXIb2msfU4",
+    "learn": [
+      "The training loop pattern",
+      "DataLoader & Dataset",
+      "Batch training",
+      "Validation loop",
+      "Saving model checkpoints",
+      "Plotting training curves"
+    ]
+  },
+  {
+    "tag": "Lesson 8 of 22 · Module 3 — Convolutional Neural Networks",
+    "title": "CNNs Explained — How Computers See",
+    "subtitle": "Understand convolutions, pooling and how CNNs extract features from images.",
+    "video": "QzY57FaENXg",
+    "learn": [
+      "What is a convolution?",
+      "Filters & feature maps",
+      "Pooling layers",
+      "CNN architecture overview",
+      "Flattening & dense layers",
+      "Famous CNN architectures"
+    ]
+  },
+  {
+    "tag": "Lesson 9 of 22 · Module 3 — Convolutional Neural Networks",
+    "title": "Building a CNN with PyTorch",
+    "subtitle": "Code a full CNN image classifier in PyTorch and train it on a real image dataset.",
+    "video": "pDdP0TFzsoQ",
+    "learn": [
+      "Conv2d in PyTorch",
+      "MaxPool2d layer",
+      "Building a custom CNN",
+      "CIFAR-10 dataset",
+      "Training on GPU",
+      "Evaluating image accuracy"
+    ]
+  },
+  {
+    "tag": "Lesson 10 of 22 · Module 3 — Convolutional Neural Networks",
+    "title": "Transfer Learning & Fine-Tuning",
+    "subtitle": "Use pre-trained models like ResNet and VGG to achieve state-of-the-art results with minimal data.",
+    "video": "K0lWSB2QoIQ",
+    "learn": [
+      "What transfer learning is",
+      "torchvision pretrained models",
+      "Freezing layers",
+      "Fine-tuning strategy",
+      "When to use transfer learning",
+      "ResNet50 example"
+    ]
+  },
+  {
+    "tag": "Lesson 11 of 22 · Module 3 — Convolutional Neural Networks",
+    "title": "Image Classification Project",
+    "subtitle": "Build a complete image classifier from data collection to model deployment.",
+    "video": "jztwpsIzEGc",
+    "learn": [
+      "Collecting image data",
+      "Data augmentation",
+      "Custom Dataset class",
+      "Training the CNN",
+      "Evaluating with confusion matrix",
+      "Exporting the model"
+    ]
+  },
+  {
+    "tag": "Lesson 12 of 22 · Module 4 — Recurrent Neural Networks",
+    "title": "RNNs & Sequence Modeling",
+    "subtitle": "Process sequential data like text, time series and audio with Recurrent Neural Networks.",
+    "video": "AsNTP8Kwu80",
+    "learn": [
+      "Why sequences need special models",
+      "The RNN cell",
+      "Hidden state explained",
+      "Unrolling through time",
+      "Vanishing gradient in RNNs",
+      "Applications of RNNs"
+    ]
+  },
+  {
+    "tag": "Lesson 13 of 22 · Module 4 — Recurrent Neural Networks",
+    "title": "LSTMs & GRUs Explained",
+    "subtitle": "Solve the vanishing gradient problem with Long Short-Term Memory and Gated Recurrent Units.",
+    "video": "YCzL96nL7j0",
+    "learn": [
+      "LSTM cell gates",
+      "Input, forget & output gates",
+      "Cell state vs hidden state",
+      "GRU — simplified LSTM",
+      "LSTM in PyTorch",
+      "When to use LSTM vs GRU"
+    ]
+  },
+  {
+    "tag": "Lesson 14 of 22 · Module 4 — Recurrent Neural Networks",
+    "title": "Sentiment Analysis with RNN",
+    "subtitle": "Build a sentiment classifier that reads movie reviews and predicts positive or negative sentiment.",
+    "video": "0poJP2WQkR8",
+    "learn": [
+      "Text tokenization",
+      "Embedding layers",
+      "LSTM for text",
+      "IMDB dataset",
+      "Training the model",
+      "Predicting new reviews"
+    ]
+  },
+  {
+    "tag": "Lesson 15 of 22 · Module 5 — Advanced Architectures",
+    "title": "Attention Mechanism & Self-Attention",
+    "subtitle": "The breakthrough idea that powers all modern NLP — understand attention from the ground up.",
+    "video": "PSs6nxngL6k",
+    "learn": [
+      "Why attention was needed",
+      "Attention weights explained",
+      "Query, Key, Value matrices",
+      "Self-attention mechanism",
+      "Multi-head attention",
+      "Attention visualizations"
+    ]
+  },
+  {
+    "tag": "Lesson 16 of 22 · Module 5 — Advanced Architectures",
+    "title": "The Transformer Architecture",
+    "subtitle": "The architecture behind GPT, BERT, and every modern AI — built from scratch.",
+    "video": "4Bdc55j80l8",
+    "learn": [
+      "Encoder-decoder structure",
+      "Positional encoding",
+      "Multi-head attention",
+      "Feed-forward layers",
+      "Layer normalization",
+      "Transformer in PyTorch"
+    ]
+  },
+  {
+    "tag": "Lesson 17 of 22 · Module 5 — Advanced Architectures",
+    "title": "Autoencoders & Variational Autoencoders",
+    "subtitle": "Learn unsupervised representation learning with autoencoders and generative VAEs.",
+    "video": "9zKuYvjFFS8",
+    "learn": [
+      "Encoder-decoder concept",
+      "Bottleneck representations",
+      "Reconstruction loss",
+      "Variational inference",
+      "Reparameterization trick",
+      "Generating new data"
+    ]
+  },
+  {
+    "tag": "Lesson 18 of 22 · Module 5 — Advanced Architectures",
+    "title": "Generative Adversarial Networks (GANs)",
+    "subtitle": "Build the famous GAN architecture — two networks competing to generate realistic images.",
+    "video": "OljTVUVzPpM",
+    "learn": [
+      "Generator & discriminator",
+      "Adversarial training",
+      "GAN loss functions",
+      "Training instability",
+      "DCGAN architecture",
+      "GAN applications"
+    ]
+  },
+  {
+    "tag": "Lesson 19 of 22 · Module 6 — Projects",
+    "title": "Deep Learning Capstone Project",
+    "subtitle": "End-to-end deep learning project combining CNN, transfer learning and model evaluation.",
+    "video": "pBFSRecaTqg",
+    "learn": [
+      "Problem formulation",
+      "Data pipeline building",
+      "Model architecture design",
+      "Training with callbacks",
+      "Evaluation & analysis",
+      "Writing a model report"
+    ]
+  },
+  {
+    "tag": "Lesson 20 of 22 · Module 6 — Projects",
+    "title": "Deploying a Deep Learning Model",
+    "subtitle": "Take your trained model and make it available as a real API endpoint others can use.",
+    "video": "si5HClvxOCE",
+    "learn": [
+      "Model export (ONNX, TorchScript)",
+      "FastAPI basics",
+      "Creating a REST endpoint",
+      "Handling image uploads",
+      "Docker basics",
+      "Deploying to Hugging Face Spaces"
+    ]
+  },
+  {
+    "tag": "Lesson 21 of 22 · Module 6 — Projects",
+    "title": "Model Optimization & Quantization",
+    "subtitle": "Make your models smaller and faster without losing accuracy — essential for production AI.",
+    "video": "DlPa-t2BKWQ",
+    "learn": [
+      "Why optimization matters",
+      "Pruning neural networks",
+      "Quantization (INT8)",
+      "Knowledge distillation",
+      "TensorRT basics",
+      "Benchmarking model speed"
+    ]
+  },
+  {
+    "tag": "Lesson 22 of 22 · Module 6 — Projects",
+    "title": "Deep Learning — Final Review",
+    "subtitle": "Review everything you've learned and plan your next steps in deep learning and AI.",
+    "video": "gZmobeGL0Yg",
+    "learn": [
+      "Course recap",
+      "What to build next",
+      "Staying current in DL",
+      "Best DL papers to read",
+      "Career paths in DL",
+      "Community & resources"
+    ]
+  }
+];
+  let current = 0;
+  const completed = new Set();
+  function loadLesson(index) {
+    current = index;
+    const l = lessons[index];
+    document.getElementById('lessonTag').textContent = l.tag;
+    document.getElementById('lessonTitle').textContent = l.title;
+    document.getElementById('lessonSubtitle').textContent = l.subtitle;
+    document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + l.video;
+    const grid = document.getElementById('learnGrid');
+    grid.innerHTML = l.learn.map(item => '<div class="learn-item"><div class="learn-check">✓</div>' + item + '</div>').join('');
+    document.querySelectorAll('.lesson-item').forEach((el, i) => {
+      el.classList.toggle('active', i === index);
+      el.classList.toggle('done', completed.has(i));
+      el.querySelector('.lesson-num').textContent = completed.has(i) ? '✓' : (i + 1);
+    });
+    if (index > 0) completed.add(index - 1);
+    updateProgress();
+    document.getElementById('prevBtn').style.visibility = index === 0 ? 'hidden' : 'visible';
+    document.getElementById('nextBtn').textContent = index === lessons.length - 1 ? '🎉 Course Complete!' : 'Next Lesson →';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+  function changeLesson(dir) {
+    const next = current + dir;
+    if (next >= 0 && next < lessons.length) loadLesson(next);
+  }
+  function updateProgress() {
+    const pct = Math.round((completed.size / lessons.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '% complete';
+  }
+  loadLesson(0);
+</script>
+</body>
+</html>

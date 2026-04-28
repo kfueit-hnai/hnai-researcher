@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Machine Learning — HNAI.Researcher</title>
+  <meta name="description" content="Learn Machine Learning from scratch — supervised, unsupervised & reinforcement learning with real projects. Free course by HNAI.Researcher."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #3b6ef8;
+      --dark: #0a1628;
+      --navy: #1e3a6e;
+      --slate: #64748b;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --bg: #f0f4ff;
+      --white: #ffffff;
+      --green: #22c55e;
+      --course-color: #7c3aed;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--course-color); border-radius: 10px; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 14px 48px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-mark { width: 36px; height: 36px; background: var(--dark); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .brand-mark svg { width: 20px; height: 20px; }
+    .brand-main { font-size: 15px; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; }
+    .brand-main span { color: var(--course-color); }
+    .brand-sub { font-size: 9px; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .brand-wordmark { display: flex; flex-direction: column; line-height: 1.2; }
+    .nav-back { font-size: 13px; color: var(--slate); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--course-color); }
+    .btn-primary { font-size: 12px; background: var(--course-color); color: var(--white); border: none; border-radius: 7px; padding: 8px 18px; font-weight: 700; cursor: pointer; transition: background 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; text-decoration: none; }
+    .btn-primary:hover { opacity: 0.88; }
+    .course-hero {
+      background: var(--white); padding: 56px 48px 48px;
+      border-bottom: 0.5px solid var(--border); position: relative; overflow: hidden;
+    }
+    .hero-dots { position: absolute; inset: 0; background-image: radial-gradient(#c7d4f5 1.3px, transparent 1.3px); background-size: 24px 24px; opacity: 0.5; }
+    .hero-glow { position: absolute; top: -80px; right: -60px; width: 400px; height: 400px; background: radial-gradient(circle, #ede9fe 0%, transparent 68%); opacity: 0.6; }
+    .course-hero-inner { position: relative; z-index: 2; max-width: 720px; }
+    .breadcrumb { font-size: 12px; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+    .breadcrumb a { color: var(--course-color); text-decoration: none; font-weight: 600; }
+    .course-badge { display: inline-flex; align-items: center; gap: 8px; background: #f5f3ff; border: 0.5px solid #ddd6fe; border-radius: 20px; padding: 5px 14px; margin-bottom: 18px; }
+    .course-badge-text { font-size: 11px; color: var(--course-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .course-hero h1 { font-size: 42px; font-weight: 800; color: var(--dark); letter-spacing: -0.03em; margin-bottom: 14px; line-height: 1.1; }
+    .course-hero h1 span { color: var(--course-color); }
+    .course-desc { font-size: 15px; color: var(--slate); line-height: 1.8; max-width: 580px; margin-bottom: 28px; }
+    .course-meta-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .cmeta-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--slate); font-weight: 500; }
+    .cmeta-item span { font-size: 16px; }
+    .progress-bar-wrap { background: var(--dark); padding: 16px 48px; display: flex; align-items: center; gap: 20px; }
+    .progress-label { font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
+    .progress-track { flex: 1; height: 5px; background: var(--navy); border-radius: 10px; max-width: 300px; }
+    .progress-fill { height: 100%; border-radius: 10px; background: var(--course-color); width: 0%; transition: width 1s ease; }
+    .progress-pct { font-size: 11px; color: var(--course-color); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+    .course-layout { display: grid; grid-template-columns: 280px 1fr; gap: 0; min-height: calc(100vh - 200px); }
+    @media (max-width: 900px) { .course-layout { grid-template-columns: 1fr; } }
+    .sidebar { background: var(--white); border-right: 0.5px solid var(--border); padding: 28px 0; position: sticky; top: 65px; height: fit-content; max-height: calc(100vh - 65px); overflow-y: auto; }
+    .sidebar-title { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; padding: 0 20px; margin-bottom: 14px; }
+    .lesson-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 20px; cursor: pointer; transition: background 0.15s;
+      border-left: 3px solid transparent; text-decoration: none;
+    }
+    .lesson-item:hover { background: var(--bg); }
+    .lesson-item.active { background: #f5f3ff; border-left-color: var(--course-color); }
+    .lesson-num { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--muted); flex-shrink: 0; margin-top: 1px; font-family: 'JetBrains Mono', monospace; }
+    .lesson-item.active .lesson-num { background: var(--course-color); border-color: var(--course-color); color: var(--white); }
+    .lesson-item.done .lesson-num { background: var(--green); border-color: var(--green); color: var(--white); }
+    .lesson-info { flex: 1; }
+    .lesson-name { font-size: 12px; font-weight: 600; color: var(--dark); line-height: 1.4; margin-bottom: 3px; }
+    .lesson-item.active .lesson-name { color: var(--course-color); }
+    .lesson-dur { font-size: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .sidebar-section { margin-top: 8px; }
+    .sidebar-section-title { font-size: 9px; font-weight: 700; color: var(--course-color); text-transform: uppercase; letter-spacing: 0.1em; padding: 10px 20px 4px; background: #f8faff; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    .course-main { padding: 36px 48px; }
+    @media (max-width: 768px) { .course-main { padding: 24px 20px; } .course-hero { padding: 40px 20px 32px; } nav { padding: 12px 20px; } .progress-bar-wrap { padding: 14px 20px; } }
+    .lesson-header { margin-bottom: 28px; }
+    .lesson-tag { font-size: 10px; font-weight: 700; color: var(--course-color); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
+    .lesson-title { font-size: 26px; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; margin-bottom: 10px; }
+    .lesson-subtitle { font-size: 14px; color: var(--slate); line-height: 1.7; max-width: 600px; }
+    .video-wrap {
+      position: relative; width: 100%; padding-bottom: 56.25%;
+      border-radius: 14px; overflow: hidden; background: #000;
+      margin-bottom: 28px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .learn-box { background: var(--white); border: 0.5px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 24px; }
+    .learn-box-title { font-size: 13px; font-weight: 800; color: var(--dark); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .learn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    @media (max-width: 600px) { .learn-grid { grid-template-columns: 1fr; } }
+    .learn-item { display: flex; align-items: flex-start; gap: 9px; font-size: 12px; color: var(--slate); line-height: 1.5; }
+    .learn-check { width: 18px; height: 18px; border-radius: 50%; background: #f5f3ff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 9px; color: var(--course-color); font-weight: 800; margin-top: 1px; }
+    .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding-top: 24px; border-top: 0.5px solid var(--border); flex-wrap: wrap; gap: 12px; }
+    .nav-btn { display: flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 9px; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s; border: 1.5px solid var(--border); color: var(--slate); background: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; }
+    .nav-btn:hover { border-color: var(--course-color); color: var(--course-color); }
+    .nav-btn.next { background: var(--course-color); color: var(--white); border-color: var(--course-color); }
+    .nav-btn.next:hover { opacity: 0.88; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="4" fill="#7c3aed"/>
+        <circle cx="10" cy="2.5" r="2" fill="#c4b5fd"/>
+        <circle cx="10" cy="17.5" r="2" fill="#c4b5fd"/>
+        <circle cx="2.5" cy="10" r="2" fill="#c4b5fd"/>
+        <circle cx="17.5" cy="10" r="2" fill="#c4b5fd"/>
+        <line x1="10" y1="4.5" x2="10" y2="6" stroke="#7c3aed" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="10" y1="14" x2="10" y2="15.5" stroke="#7c3aed" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="4.5" y1="10" x2="6" y2="10" stroke="#7c3aed" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="14" y1="10" x2="15.5" y2="10" stroke="#7c3aed" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="brand-wordmark">
+      <div class="brand-main">HNAI<span>.Researcher</span></div>
+      <div class="brand-sub">Humera Noor · AI Lab</div>
+    </div>
+  </a>
+  <a href="index.html#courses" class="nav-back">← Back to Courses</a>
+  <a href="index.html#courses" class="btn-primary">All Courses →</a>
+</nav>
+<div class="course-hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="course-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> → <a href="index.html#courses">Courses</a> → Machine Learning</div>
+    <div class="course-badge"><span class="course-badge-text">🧠 Intermediate · Free · Open Source</span></div>
+    <h1>Machine <span>Learning</span></h1>
+    <p class="course-desc">Master supervised, unsupervised & reinforcement learning with real datasets and hands-on projects. Go from ML theory to working models.</p>
+    <div class="course-meta-row">
+      <div class="cmeta-item"><span>📚</span> 18 Lessons</div>
+      <div class="cmeta-item"><span>⏱️</span> ~18 Hours Total</div>
+      <div class="cmeta-item"><span>🎯</span> Intermediate</div>
+      <div class="cmeta-item"><span>🆓</span> Completely Free</div>
+      <div class="cmeta-item"><span>📺</span> YouTube Videos</div>
+    </div>
+  </div>
+</div>
+<div class="progress-bar-wrap">
+  <span class="progress-label">// your progress</span>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="progress-pct" id="progressPct">0% complete</span>
+</div>
+<div class="course-layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">Course Lessons</div>
+    
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 1 — ML Foundations</div>
+      <a class="lesson-item active" onclick="loadLesson(0)" href="#">
+        <div class="lesson-num">1</div>
+        <div class="lesson-info"><div class="lesson-name">What is Machine Learning?</div><div class="lesson-dur">45min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(1)" href="#">
+        <div class="lesson-num">2</div>
+        <div class="lesson-info"><div class="lesson-name">Types of ML: Supervised, Unsupervised & RL</div><div class="lesson-dur">50min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(2)" href="#">
+        <div class="lesson-num">3</div>
+        <div class="lesson-info"><div class="lesson-name">Setting Up Your ML Environment</div><div class="lesson-dur">30min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 2 — Supervised Learning</div>
+      <a class="lesson-item " onclick="loadLesson(3)" href="#">
+        <div class="lesson-num">4</div>
+        <div class="lesson-info"><div class="lesson-name">Linear Regression from Scratch</div><div class="lesson-dur">1h 10min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(4)" href="#">
+        <div class="lesson-num">5</div>
+        <div class="lesson-info"><div class="lesson-name">Logistic Regression & Classification</div><div class="lesson-dur">55min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(5)" href="#">
+        <div class="lesson-num">6</div>
+        <div class="lesson-info"><div class="lesson-name">Decision Trees & Random Forests</div><div class="lesson-dur">1h 0min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(6)" href="#">
+        <div class="lesson-num">7</div>
+        <div class="lesson-info"><div class="lesson-name">Support Vector Machines (SVM)</div><div class="lesson-dur">45min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(7)" href="#">
+        <div class="lesson-num">8</div>
+        <div class="lesson-info"><div class="lesson-name">K-Nearest Neighbors (KNN)</div><div class="lesson-dur">40min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 3 — Model Evaluation</div>
+      <a class="lesson-item " onclick="loadLesson(8)" href="#">
+        <div class="lesson-num">9</div>
+        <div class="lesson-info"><div class="lesson-name">Train/Test Split & Cross Validation</div><div class="lesson-dur">40min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(9)" href="#">
+        <div class="lesson-num">10</div>
+        <div class="lesson-info"><div class="lesson-name">Accuracy, Precision, Recall & F1</div><div class="lesson-dur">45min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(10)" href="#">
+        <div class="lesson-num">11</div>
+        <div class="lesson-info"><div class="lesson-name">Overfitting, Underfitting & Regularization</div><div class="lesson-dur">50min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 4 — Unsupervised Learning</div>
+      <a class="lesson-item " onclick="loadLesson(11)" href="#">
+        <div class="lesson-num">12</div>
+        <div class="lesson-info"><div class="lesson-name">K-Means Clustering</div><div class="lesson-dur">50min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(12)" href="#">
+        <div class="lesson-num">13</div>
+        <div class="lesson-info"><div class="lesson-name">Principal Component Analysis (PCA)</div><div class="lesson-dur">55min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(13)" href="#">
+        <div class="lesson-num">14</div>
+        <div class="lesson-info"><div class="lesson-name">Dimensionality Reduction Techniques</div><div class="lesson-dur">40min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 5 — Projects</div>
+      <a class="lesson-item " onclick="loadLesson(14)" href="#">
+        <div class="lesson-num">15</div>
+        <div class="lesson-info"><div class="lesson-name">House Price Prediction Project</div><div class="lesson-dur">1h 20min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(15)" href="#">
+        <div class="lesson-num">16</div>
+        <div class="lesson-info"><div class="lesson-name">Customer Segmentation Project</div><div class="lesson-dur">1h 10min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(16)" href="#">
+        <div class="lesson-num">17</div>
+        <div class="lesson-info"><div class="lesson-name">ML Pipeline with Scikit-Learn</div><div class="lesson-dur">1h 0min</div></div>
+      </a>
+    </div>
+  </aside>
+  <main class="course-main">
+    <div class="lesson-header">
+      <div class="lesson-tag" id="lessonTag"></div>
+      <div class="lesson-title" id="lessonTitle"></div>
+      <div class="lesson-subtitle" id="lessonSubtitle"></div>
+    </div>
+    <div class="video-wrap">
+      <iframe id="videoFrame" src="" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="learn-box">
+      <div class="learn-box-title">✅ What You'll Learn in This Lesson</div>
+      <div class="learn-grid" id="learnGrid"></div>
+    </div>
+    <div class="lesson-nav">
+      <button class="nav-btn" id="prevBtn" onclick="changeLesson(-1)">← Previous</button>
+      <button class="nav-btn next" id="nextBtn" onclick="changeLesson(1)">Next Lesson →</button>
+    </div>
+  </main>
+</div>
+<script>
+  const lessons = [
+  {
+    "tag": "Lesson 1 of 18 · Module 1 — ML Foundations",
+    "title": "What is Machine Learning?",
+    "subtitle": "Understand what ML really is, how it differs from traditional programming, and where it's used in the real world.",
+    "video": "ukzFI9rgwfU",
+    "learn": [
+      "What ML actually is",
+      "Traditional vs ML approach",
+      "Real-world ML applications",
+      "Types of ML problems",
+      "When NOT to use ML",
+      "The ML workflow overview"
+    ]
+  },
+  {
+    "tag": "Lesson 2 of 18 · Module 1 — ML Foundations",
+    "title": "Types of ML: Supervised, Unsupervised & RL",
+    "subtitle": "Master the three paradigms of machine learning and know exactly which to apply for any problem.",
+    "video": "1FZ0A1QCMWc",
+    "learn": [
+      "Supervised learning explained",
+      "Unsupervised learning explained",
+      "Reinforcement learning basics",
+      "Classification vs Regression",
+      "Clustering problems",
+      "Choosing the right ML type"
+    ]
+  },
+  {
+    "tag": "Lesson 3 of 18 · Module 1 — ML Foundations",
+    "title": "Setting Up Your ML Environment",
+    "subtitle": "Install and configure Python, scikit-learn, Jupyter and all the tools you need for hands-on ML.",
+    "video": "WFr2WgN9_xE",
+    "learn": [
+      "Installing Anaconda & Python",
+      "Scikit-learn setup",
+      "Jupyter Notebook setup",
+      "Loading datasets",
+      "Exploring data with Pandas",
+      "Your first ML model in 10 lines"
+    ]
+  },
+  {
+    "tag": "Lesson 4 of 18 · Module 2 — Supervised Learning",
+    "title": "Linear Regression from Scratch",
+    "subtitle": "Understand the math and code behind linear regression — the foundation of all ML algorithms.",
+    "video": "NUXdtN1W1FE",
+    "learn": [
+      "What regression means",
+      "Cost function & MSE",
+      "Gradient descent explained",
+      "Training a linear model",
+      "Making predictions",
+      "Evaluating regression models"
+    ]
+  },
+  {
+    "tag": "Lesson 5 of 18 · Module 2 — Supervised Learning",
+    "title": "Logistic Regression & Classification",
+    "subtitle": "Classify data into categories with logistic regression — the go-to for binary classification tasks.",
+    "video": "yIYKR4sgzI8",
+    "learn": [
+      "Binary classification",
+      "Sigmoid function",
+      "Log loss explained",
+      "Decision boundaries",
+      "Multiclass classification",
+      "Scikit-learn implementation"
+    ]
+  },
+  {
+    "tag": "Lesson 6 of 18 · Module 2 — Supervised Learning",
+    "title": "Decision Trees & Random Forests",
+    "subtitle": "Build interpretable models with decision trees and supercharge accuracy with Random Forests.",
+    "video": "RmajweUFKHA",
+    "learn": [
+      "How decision trees split",
+      "Information gain & Gini",
+      "Pruning to avoid overfitting",
+      "Bagging & ensembles",
+      "Random Forest algorithm",
+      "Feature importance scores"
+    ]
+  },
+  {
+    "tag": "Lesson 7 of 18 · Module 2 — Supervised Learning",
+    "title": "Support Vector Machines (SVM)",
+    "subtitle": "Use hyperplanes and kernels to classify complex datasets with high accuracy.",
+    "video": "_YPScrckx28",
+    "learn": [
+      "Hyperplanes & margins",
+      "Support vectors explained",
+      "Kernel trick",
+      "Soft vs Hard margin",
+      "SVM for regression",
+      "Scikit-learn SVM code"
+    ]
+  },
+  {
+    "tag": "Lesson 8 of 18 · Module 2 — Supervised Learning",
+    "title": "K-Nearest Neighbors (KNN)",
+    "subtitle": "The simplest ML classifier — understand how distance-based learning works.",
+    "video": "HVXime0nQeI",
+    "learn": [
+      "How KNN classifies",
+      "Distance metrics (Euclidean, Manhattan)",
+      "Choosing K value",
+      "KNN for regression",
+      "Strengths & weaknesses",
+      "KNN in Scikit-learn"
+    ]
+  },
+  {
+    "tag": "Lesson 9 of 18 · Module 3 — Model Evaluation",
+    "title": "Train/Test Split & Cross Validation",
+    "subtitle": "Properly evaluate your model so you know how it will perform on real, unseen data.",
+    "video": "fSytzGwwBVw",
+    "learn": [
+      "Why train/test split matters",
+      "test_size parameter",
+      "Stratified splitting",
+      "K-Fold cross validation",
+      "Leave-One-Out CV",
+      "Cross_val_score in Sklearn"
+    ]
+  },
+  {
+    "tag": "Lesson 10 of 18 · Module 3 — Model Evaluation",
+    "title": "Accuracy, Precision, Recall & F1",
+    "subtitle": "Go beyond accuracy — understand the metrics that matter for imbalanced datasets.",
+    "video": "85dtiMz9tSo",
+    "learn": [
+      "Confusion matrix explained",
+      "Accuracy formula",
+      "Precision vs Recall tradeoff",
+      "F1 score calculation",
+      "ROC-AUC curve",
+      "Classification report in Sklearn"
+    ]
+  },
+  {
+    "tag": "Lesson 11 of 18 · Module 3 — Model Evaluation",
+    "title": "Overfitting, Underfitting & Regularization",
+    "subtitle": "The most important concept in ML — prevent your model from memorizing instead of learning.",
+    "video": "EuBBz3bI-aA",
+    "learn": [
+      "Bias-variance tradeoff",
+      "Signs of overfitting",
+      "Signs of underfitting",
+      "L1 (Lasso) regularization",
+      "L2 (Ridge) regularization",
+      "Early stopping techniques"
+    ]
+  },
+  {
+    "tag": "Lesson 12 of 18 · Module 4 — Unsupervised Learning",
+    "title": "K-Means Clustering",
+    "subtitle": "Group similar data points without labels — discover hidden structure in your data.",
+    "video": "4b5d3muPQmA",
+    "learn": [
+      "What clustering is",
+      "K-Means algorithm steps",
+      "Choosing K (Elbow method)",
+      "Inertia & silhouette score",
+      "K-Means limitations",
+      "Real-world clustering examples"
+    ]
+  },
+  {
+    "tag": "Lesson 13 of 18 · Module 4 — Unsupervised Learning",
+    "title": "Principal Component Analysis (PCA)",
+    "subtitle": "Reduce dimensions, visualize high-dimensional data, and speed up ML models with PCA.",
+    "video": "FgakZw6K1QQ",
+    "learn": [
+      "Why dimensionality matters",
+      "Eigenvectors & eigenvalues",
+      "Variance explained",
+      "Implementing PCA in Sklearn",
+      "Visualizing 2D projections",
+      "When to use PCA"
+    ]
+  },
+  {
+    "tag": "Lesson 14 of 18 · Module 4 — Unsupervised Learning",
+    "title": "Dimensionality Reduction Techniques",
+    "subtitle": "Beyond PCA — explore t-SNE, UMAP and other powerful techniques for visualizing ML data.",
+    "video": "NEaUSP4YerM",
+    "learn": [
+      "t-SNE explained",
+      "UMAP algorithm",
+      "When to use each method",
+      "Visualization techniques",
+      "Feature selection vs extraction",
+      "Combining with supervised learning"
+    ]
+  },
+  {
+    "tag": "Lesson 15 of 18 · Module 5 — Projects",
+    "title": "House Price Prediction Project",
+    "subtitle": "Build a complete regression project — load data, engineer features, train and evaluate a model.",
+    "video": "Wqmtf9SA_kk",
+    "learn": [
+      "Loading & exploring housing data",
+      "Feature engineering",
+      "Handling missing values",
+      "Training a regression model",
+      "Evaluating with RMSE",
+      "Improving model performance"
+    ]
+  },
+  {
+    "tag": "Lesson 16 of 18 · Module 5 — Projects",
+    "title": "Customer Segmentation Project",
+    "subtitle": "Use K-Means clustering on real customer data to find meaningful customer groups.",
+    "video": "5I3Ei69I40s",
+    "learn": [
+      "Loading customer dataset",
+      "Exploratory data analysis",
+      "Preprocessing & scaling",
+      "Running K-Means clustering",
+      "Visualizing segments",
+      "Business interpretation"
+    ]
+  },
+  {
+    "tag": "Lesson 17 of 18 · Module 5 — Projects",
+    "title": "ML Pipeline with Scikit-Learn",
+    "subtitle": "Build production-ready ML pipelines that preprocess, train and evaluate in one clean workflow.",
+    "video": "0UWXCAYn8rk",
+    "learn": [
+      "What is an ML pipeline",
+      "Pipeline object in Sklearn",
+      "ColumnTransformer for preprocessing",
+      "Combining steps cleanly",
+      "Grid search on pipelines",
+      "Saving & loading models"
+    ]
+  },
+  {
+    "tag": "Lesson 18 of 18 · Module 5 — Projects",
+    "title": "Machine Learning — Capstone Project",
+    "subtitle": "Put it all together — end-to-end ML project from raw data to final evaluated model.",
+    "video": "i_LwzRVP7bg",
+    "learn": [
+      "Define the problem",
+      "Collect & explore data",
+      "Feature engineering",
+      "Train multiple models",
+      "Compare & evaluate",
+      "Deploy your model"
+    ]
+  }
+];
+  let current = 0;
+  const completed = new Set();
+  function loadLesson(index) {
+    current = index;
+    const l = lessons[index];
+    document.getElementById('lessonTag').textContent = l.tag;
+    document.getElementById('lessonTitle').textContent = l.title;
+    document.getElementById('lessonSubtitle').textContent = l.subtitle;
+    document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + l.video;
+    const grid = document.getElementById('learnGrid');
+    grid.innerHTML = l.learn.map(item => '<div class="learn-item"><div class="learn-check">✓</div>' + item + '</div>').join('');
+    document.querySelectorAll('.lesson-item').forEach((el, i) => {
+      el.classList.toggle('active', i === index);
+      el.classList.toggle('done', completed.has(i));
+      el.querySelector('.lesson-num').textContent = completed.has(i) ? '✓' : (i + 1);
+    });
+    if (index > 0) completed.add(index - 1);
+    updateProgress();
+    document.getElementById('prevBtn').style.visibility = index === 0 ? 'hidden' : 'visible';
+    document.getElementById('nextBtn').textContent = index === lessons.length - 1 ? '🎉 Course Complete!' : 'Next Lesson →';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+  function changeLesson(dir) {
+    const next = current + dir;
+    if (next >= 0 && next < lessons.length) loadLesson(next);
+  }
+  function updateProgress() {
+    const pct = Math.round((completed.size / lessons.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '% complete';
+  }
+  loadLesson(0);
+</script>
+</body>
+</html>

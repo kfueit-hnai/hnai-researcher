@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Computer Vision — HNAI.Researcher</title>
+  <meta name="description" content="Learn Computer Vision with OpenCV, PyTorch and YOLO — image classification, detection, segmentation and more. Free course by HNAI.Researcher."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #3b6ef8;
+      --dark: #0a1628;
+      --navy: #1e3a6e;
+      --slate: #64748b;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --bg: #f0f4ff;
+      --white: #ffffff;
+      --green: #22c55e;
+      --course-color: #d97706;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--course-color); border-radius: 10px; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 14px 48px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-mark { width: 36px; height: 36px; background: var(--dark); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .brand-mark svg { width: 20px; height: 20px; }
+    .brand-main { font-size: 15px; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; }
+    .brand-main span { color: var(--course-color); }
+    .brand-sub { font-size: 9px; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .brand-wordmark { display: flex; flex-direction: column; line-height: 1.2; }
+    .nav-back { font-size: 13px; color: var(--slate); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--course-color); }
+    .btn-primary { font-size: 12px; background: var(--course-color); color: var(--white); border: none; border-radius: 7px; padding: 8px 18px; font-weight: 700; cursor: pointer; transition: background 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; text-decoration: none; }
+    .btn-primary:hover { opacity: 0.88; }
+    .course-hero {
+      background: var(--white); padding: 56px 48px 48px;
+      border-bottom: 0.5px solid var(--border); position: relative; overflow: hidden;
+    }
+    .hero-dots { position: absolute; inset: 0; background-image: radial-gradient(#c7d4f5 1.3px, transparent 1.3px); background-size: 24px 24px; opacity: 0.5; }
+    .hero-glow { position: absolute; top: -80px; right: -60px; width: 400px; height: 400px; background: radial-gradient(circle, #fef3c7 0%, transparent 68%); opacity: 0.6; }
+    .course-hero-inner { position: relative; z-index: 2; max-width: 720px; }
+    .breadcrumb { font-size: 12px; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+    .breadcrumb a { color: var(--course-color); text-decoration: none; font-weight: 600; }
+    .course-badge { display: inline-flex; align-items: center; gap: 8px; background: #fffbeb; border: 0.5px solid #fde68a; border-radius: 20px; padding: 5px 14px; margin-bottom: 18px; }
+    .course-badge-text { font-size: 11px; color: var(--course-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .course-hero h1 { font-size: 42px; font-weight: 800; color: var(--dark); letter-spacing: -0.03em; margin-bottom: 14px; line-height: 1.1; }
+    .course-hero h1 span { color: var(--course-color); }
+    .course-desc { font-size: 15px; color: var(--slate); line-height: 1.8; max-width: 580px; margin-bottom: 28px; }
+    .course-meta-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .cmeta-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--slate); font-weight: 500; }
+    .cmeta-item span { font-size: 16px; }
+    .progress-bar-wrap { background: var(--dark); padding: 16px 48px; display: flex; align-items: center; gap: 20px; }
+    .progress-label { font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
+    .progress-track { flex: 1; height: 5px; background: var(--navy); border-radius: 10px; max-width: 300px; }
+    .progress-fill { height: 100%; border-radius: 10px; background: var(--course-color); width: 0%; transition: width 1s ease; }
+    .progress-pct { font-size: 11px; color: var(--course-color); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+    .course-layout { display: grid; grid-template-columns: 280px 1fr; gap: 0; min-height: calc(100vh - 200px); }
+    @media (max-width: 900px) { .course-layout { grid-template-columns: 1fr; } }
+    .sidebar { background: var(--white); border-right: 0.5px solid var(--border); padding: 28px 0; position: sticky; top: 65px; height: fit-content; max-height: calc(100vh - 65px); overflow-y: auto; }
+    .sidebar-title { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; padding: 0 20px; margin-bottom: 14px; }
+    .lesson-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 20px; cursor: pointer; transition: background 0.15s;
+      border-left: 3px solid transparent; text-decoration: none;
+    }
+    .lesson-item:hover { background: var(--bg); }
+    .lesson-item.active { background: #fffbeb; border-left-color: var(--course-color); }
+    .lesson-num { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--muted); flex-shrink: 0; margin-top: 1px; font-family: 'JetBrains Mono', monospace; }
+    .lesson-item.active .lesson-num { background: var(--course-color); border-color: var(--course-color); color: var(--white); }
+    .lesson-item.done .lesson-num { background: var(--green); border-color: var(--green); color: var(--white); }
+    .lesson-info { flex: 1; }
+    .lesson-name { font-size: 12px; font-weight: 600; color: var(--dark); line-height: 1.4; margin-bottom: 3px; }
+    .lesson-item.active .lesson-name { color: var(--course-color); }
+    .lesson-dur { font-size: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .sidebar-section { margin-top: 8px; }
+    .sidebar-section-title { font-size: 9px; font-weight: 700; color: var(--course-color); text-transform: uppercase; letter-spacing: 0.1em; padding: 10px 20px 4px; background: #f8faff; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    .course-main { padding: 36px 48px; }
+    @media (max-width: 768px) { .course-main { padding: 24px 20px; } .course-hero { padding: 40px 20px 32px; } nav { padding: 12px 20px; } .progress-bar-wrap { padding: 14px 20px; } }
+    .lesson-header { margin-bottom: 28px; }
+    .lesson-tag { font-size: 10px; font-weight: 700; color: var(--course-color); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
+    .lesson-title { font-size: 26px; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; margin-bottom: 10px; }
+    .lesson-subtitle { font-size: 14px; color: var(--slate); line-height: 1.7; max-width: 600px; }
+    .video-wrap {
+      position: relative; width: 100%; padding-bottom: 56.25%;
+      border-radius: 14px; overflow: hidden; background: #000;
+      margin-bottom: 28px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .learn-box { background: var(--white); border: 0.5px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 24px; }
+    .learn-box-title { font-size: 13px; font-weight: 800; color: var(--dark); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .learn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    @media (max-width: 600px) { .learn-grid { grid-template-columns: 1fr; } }
+    .learn-item { display: flex; align-items: flex-start; gap: 9px; font-size: 12px; color: var(--slate); line-height: 1.5; }
+    .learn-check { width: 18px; height: 18px; border-radius: 50%; background: #fffbeb; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 9px; color: var(--course-color); font-weight: 800; margin-top: 1px; }
+    .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding-top: 24px; border-top: 0.5px solid var(--border); flex-wrap: wrap; gap: 12px; }
+    .nav-btn { display: flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 9px; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s; border: 1.5px solid var(--border); color: var(--slate); background: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; }
+    .nav-btn:hover { border-color: var(--course-color); color: var(--course-color); }
+    .nav-btn.next { background: var(--course-color); color: var(--white); border-color: var(--course-color); }
+    .nav-btn.next:hover { opacity: 0.88; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="4" fill="#d97706"/>
+        <circle cx="10" cy="2.5" r="2" fill="#fcd34d"/>
+        <circle cx="10" cy="17.5" r="2" fill="#fcd34d"/>
+        <circle cx="2.5" cy="10" r="2" fill="#fcd34d"/>
+        <circle cx="17.5" cy="10" r="2" fill="#fcd34d"/>
+        <line x1="10" y1="4.5" x2="10" y2="6" stroke="#d97706" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="10" y1="14" x2="10" y2="15.5" stroke="#d97706" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="4.5" y1="10" x2="6" y2="10" stroke="#d97706" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="14" y1="10" x2="15.5" y2="10" stroke="#d97706" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="brand-wordmark">
+      <div class="brand-main">HNAI<span>.Researcher</span></div>
+      <div class="brand-sub">Humera Noor · AI Lab</div>
+    </div>
+  </a>
+  <a href="index.html#courses" class="nav-back">← Back to Courses</a>
+  <a href="index.html#courses" class="btn-primary">All Courses →</a>
+</nav>
+<div class="course-hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="course-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> → <a href="index.html#courses">Courses</a> → Computer Vision</div>
+    <div class="course-badge"><span class="course-badge-text">👁️ Intermediate · Free · Open Source</span></div>
+    <h1>Computer <span>Vision</span></h1>
+    <p class="course-desc">Build systems that see — image classification, object detection, segmentation and real-time video processing with OpenCV and PyTorch.</p>
+    <div class="course-meta-row">
+      <div class="cmeta-item"><span>📚</span> 14 Lessons</div>
+      <div class="cmeta-item"><span>⏱️</span> ~14 Hours Total</div>
+      <div class="cmeta-item"><span>🎯</span> Intermediate</div>
+      <div class="cmeta-item"><span>🆓</span> Completely Free</div>
+      <div class="cmeta-item"><span>📺</span> YouTube Videos</div>
+    </div>
+  </div>
+</div>
+<div class="progress-bar-wrap">
+  <span class="progress-label">// your progress</span>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="progress-pct" id="progressPct">0% complete</span>
+</div>
+<div class="course-layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">Course Lessons</div>
+    
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 1 — Vision Foundations</div>
+      <a class="lesson-item active" onclick="loadLesson(0)" href="#">
+        <div class="lesson-num">1</div>
+        <div class="lesson-info"><div class="lesson-name">What is Computer Vision?</div><div class="lesson-dur">40min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(1)" href="#">
+        <div class="lesson-num">2</div>
+        <div class="lesson-info"><div class="lesson-name">Images as Data — Pixels & Color</div><div class="lesson-dur">45min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(2)" href="#">
+        <div class="lesson-num">3</div>
+        <div class="lesson-info"><div class="lesson-name">Image Processing with OpenCV</div><div class="lesson-dur">1h 5min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 2 — Deep Learning for Vision</div>
+      <a class="lesson-item " onclick="loadLesson(3)" href="#">
+        <div class="lesson-num">4</div>
+        <div class="lesson-info"><div class="lesson-name">CNNs for Image Recognition</div><div class="lesson-dur">1h 5min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(4)" href="#">
+        <div class="lesson-num">5</div>
+        <div class="lesson-info"><div class="lesson-name">Transfer Learning for Vision</div><div class="lesson-dur">55min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(5)" href="#">
+        <div class="lesson-num">6</div>
+        <div class="lesson-info"><div class="lesson-name">Object Detection with YOLO</div><div class="lesson-dur">1h 15min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(6)" href="#">
+        <div class="lesson-num">7</div>
+        <div class="lesson-info"><div class="lesson-name">Image Segmentation Explained</div><div class="lesson-dur">1h 0min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 3 — Advanced Vision</div>
+      <a class="lesson-item " onclick="loadLesson(7)" href="#">
+        <div class="lesson-num">8</div>
+        <div class="lesson-info"><div class="lesson-name">Face Detection & Recognition</div><div class="lesson-dur">55min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(8)" href="#">
+        <div class="lesson-num">9</div>
+        <div class="lesson-info"><div class="lesson-name">Video & Real-Time Processing</div><div class="lesson-dur">1h 0min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(9)" href="#">
+        <div class="lesson-num">10</div>
+        <div class="lesson-info"><div class="lesson-name">Pose Estimation with MediaPipe</div><div class="lesson-dur">45min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(10)" href="#">
+        <div class="lesson-num">11</div>
+        <div class="lesson-info"><div class="lesson-name">Depth Estimation & 3D Vision</div><div class="lesson-dur">50min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 4 — Generative Vision Models</div>
+      <a class="lesson-item " onclick="loadLesson(11)" href="#">
+        <div class="lesson-num">12</div>
+        <div class="lesson-info"><div class="lesson-name">Stable Diffusion & Diffusion Models</div><div class="lesson-dur">1h 10min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(12)" href="#">
+        <div class="lesson-num">13</div>
+        <div class="lesson-info"><div class="lesson-name">Image Generation with GANs</div><div class="lesson-dur">55min</div></div>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Module 5 — Projects</div>
+      <a class="lesson-item " onclick="loadLesson(13)" href="#">
+        <div class="lesson-num">14</div>
+        <div class="lesson-info"><div class="lesson-name">Real-Time Object Detector Project</div><div class="lesson-dur">1h 20min</div></div>
+      </a>
+      <a class="lesson-item " onclick="loadLesson(14)" href="#">
+        <div class="lesson-num">15</div>
+        <div class="lesson-info"><div class="lesson-name">Face Recognition Attendance System</div><div class="lesson-dur">1h 15min</div></div>
+      </a>
+    </div>
+  </aside>
+  <main class="course-main">
+    <div class="lesson-header">
+      <div class="lesson-tag" id="lessonTag"></div>
+      <div class="lesson-title" id="lessonTitle"></div>
+      <div class="lesson-subtitle" id="lessonSubtitle"></div>
+    </div>
+    <div class="video-wrap">
+      <iframe id="videoFrame" src="" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="learn-box">
+      <div class="learn-box-title">✅ What You'll Learn in This Lesson</div>
+      <div class="learn-grid" id="learnGrid"></div>
+    </div>
+    <div class="lesson-nav">
+      <button class="nav-btn" id="prevBtn" onclick="changeLesson(-1)">← Previous</button>
+      <button class="nav-btn next" id="nextBtn" onclick="changeLesson(1)">Next Lesson →</button>
+    </div>
+  </main>
+</div>
+<script>
+  const lessons = [
+  {
+    "tag": "Lesson 1 of 14 · Module 1 — Vision Foundations",
+    "title": "What is Computer Vision?",
+    "subtitle": "Discover how machines see and interpret visual information — from pixels to understanding.",
+    "video": "01sAkU_NvOY",
+    "learn": [
+      "Human vs computer vision",
+      "CV applications everywhere",
+      "History of computer vision",
+      "Key CV tasks",
+      "Modern CV landscape",
+      "What you'll build in this course"
+    ]
+  },
+  {
+    "tag": "Lesson 2 of 14 · Module 1 — Vision Foundations",
+    "title": "Images as Data — Pixels & Color",
+    "subtitle": "Understand how images are stored as numbers — RGB, grayscale, channels and resolution.",
+    "video": "WCl2HhxuPMY",
+    "learn": [
+      "Pixels & resolution",
+      "RGB color model",
+      "Grayscale conversion",
+      "Image as NumPy array",
+      "Image normalization",
+      "Common image formats"
+    ]
+  },
+  {
+    "tag": "Lesson 3 of 14 · Module 1 — Vision Foundations",
+    "title": "Image Processing with OpenCV",
+    "subtitle": "Master OpenCV — the industry-standard library for image and video processing.",
+    "video": "oXlwWbU8l2o",
+    "learn": [
+      "Installing OpenCV",
+      "Reading & displaying images",
+      "Resizing & cropping",
+      "Color space conversions",
+      "Blurring & edge detection",
+      "Drawing on images"
+    ]
+  },
+  {
+    "tag": "Lesson 4 of 14 · Module 2 — Deep Learning for Vision",
+    "title": "CNNs for Image Recognition",
+    "subtitle": "Build and train a convolutional neural network for image classification from scratch.",
+    "video": "pDdP0TFzsoQ",
+    "learn": [
+      "Conv layers for images",
+      "Pooling & stride",
+      "Batch normalization",
+      "Building CNN in PyTorch",
+      "CIFAR-10 classification",
+      "Evaluating image models"
+    ]
+  },
+  {
+    "tag": "Lesson 5 of 14 · Module 2 — Deep Learning for Vision",
+    "title": "Transfer Learning for Vision",
+    "subtitle": "Achieve expert-level image classification using pretrained models with minimal training.",
+    "video": "K0lWSB2QoIQ",
+    "learn": [
+      "ImageNet pretrained models",
+      "ResNet, VGG, EfficientNet",
+      "Feature extraction approach",
+      "Fine-tuning approach",
+      "Custom classification head",
+      "Practical tips for transfer learning"
+    ]
+  },
+  {
+    "tag": "Lesson 6 of 14 · Module 2 — Deep Learning for Vision",
+    "title": "Object Detection with YOLO",
+    "subtitle": "Detect and locate multiple objects in images in real-time with the YOLO family of models.",
+    "video": "ag3DLKsl2vk",
+    "learn": [
+      "Detection vs classification",
+      "Bounding boxes & IoU",
+      "YOLO architecture",
+      "YOLOv8 with Ultralytics",
+      "Training on custom data",
+      "Real-time detection demo"
+    ]
+  },
+  {
+    "tag": "Lesson 7 of 14 · Module 2 — Deep Learning for Vision",
+    "title": "Image Segmentation Explained",
+    "subtitle": "Go beyond bounding boxes — label every pixel with semantic and instance segmentation.",
+    "video": "5n1o6OXsY5A",
+    "learn": [
+      "Semantic vs instance segmentation",
+      "U-Net architecture",
+      "Mask R-CNN",
+      "SAM — Segment Anything Model",
+      "Segmentation metrics (IoU, Dice)",
+      "Practical segmentation pipeline"
+    ]
+  },
+  {
+    "tag": "Lesson 8 of 14 · Module 3 — Advanced Vision",
+    "title": "Face Detection & Recognition",
+    "subtitle": "Build a face detection and recognition system using OpenCV and deep learning.",
+    "video": "sz25xxF_AVE",
+    "learn": [
+      "Haar cascades",
+      "MTCNN face detection",
+      "Face embeddings (FaceNet)",
+      "Face matching & comparison",
+      "DeepFace library",
+      "Real-time face recognition"
+    ]
+  },
+  {
+    "tag": "Lesson 9 of 14 · Module 3 — Advanced Vision",
+    "title": "Video & Real-Time Processing",
+    "subtitle": "Process video streams in real-time — webcam capture, frame analysis and overlay graphics.",
+    "video": "eDIj5LuIL4A",
+    "learn": [
+      "OpenCV VideoCapture",
+      "Frame-by-frame processing",
+      "FPS optimization",
+      "Drawing overlays on video",
+      "Motion detection",
+      "Saving processed video"
+    ]
+  },
+  {
+    "tag": "Lesson 10 of 14 · Module 3 — Advanced Vision",
+    "title": "Pose Estimation with MediaPipe",
+    "subtitle": "Detect human body keypoints in real-time using Google's MediaPipe framework.",
+    "video": "06TE_U21FK4",
+    "learn": [
+      "What pose estimation is",
+      "MediaPipe Holistic",
+      "33 body landmarks",
+      "Hands & face landmarks",
+      "Calculating angles (e.g., elbow)",
+      "Building a fitness tracker"
+    ]
+  },
+  {
+    "tag": "Lesson 11 of 14 · Module 3 — Advanced Vision",
+    "title": "Depth Estimation & 3D Vision",
+    "subtitle": "Understand how machines perceive depth — stereo vision, LiDAR and monocular depth models.",
+    "video": "RoIkXZkUKS8",
+    "learn": [
+      "Stereo vision basics",
+      "Depth from monocular images",
+      "MiDaS depth model",
+      "Point clouds basics",
+      "SLAM overview",
+      "Applications in robotics & AR"
+    ]
+  },
+  {
+    "tag": "Lesson 12 of 14 · Module 4 — Generative Vision Models",
+    "title": "Stable Diffusion & Diffusion Models",
+    "subtitle": "Understand how AI generates photorealistic images from text with diffusion models.",
+    "video": "fbLgFrlTnGU",
+    "learn": [
+      "Diffusion process explained",
+      "U-Net denoising",
+      "CLIP text conditioning",
+      "Stable Diffusion pipeline",
+      "Running SD locally",
+      "Prompt engineering for images"
+    ]
+  },
+  {
+    "tag": "Lesson 13 of 14 · Module 4 — Generative Vision Models",
+    "title": "Image Generation with GANs",
+    "subtitle": "Build and train Generative Adversarial Networks to synthesize realistic images.",
+    "video": "OljTVUVzPpM",
+    "learn": [
+      "GAN generator & discriminator",
+      "Training dynamics",
+      "DCGAN architecture",
+      "Progressive growing GANs",
+      "StyleGAN overview",
+      "Common GAN failure modes"
+    ]
+  },
+  {
+    "tag": "Lesson 14 of 14 · Module 5 — Projects",
+    "title": "Computer Vision Capstone Project",
+    "subtitle": "Build a complete CV system — from data collection through training to real-time deployment.",
+    "video": "yqkISICHH-U",
+    "learn": [
+      "Project scoping & data",
+      "Labeling with Label Studio",
+      "Training detection model",
+      "Building inference pipeline",
+      "Gradio demo interface",
+      "Deployment on Spaces"
+    ]
+  }
+];
+  let current = 0;
+  const completed = new Set();
+  function loadLesson(index) {
+    current = index;
+    const l = lessons[index];
+    document.getElementById('lessonTag').textContent = l.tag;
+    document.getElementById('lessonTitle').textContent = l.title;
+    document.getElementById('lessonSubtitle').textContent = l.subtitle;
+    document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + l.video;
+    const grid = document.getElementById('learnGrid');
+    grid.innerHTML = l.learn.map(item => '<div class="learn-item"><div class="learn-check">✓</div>' + item + '</div>').join('');
+    document.querySelectorAll('.lesson-item').forEach((el, i) => {
+      el.classList.toggle('active', i === index);
+      el.classList.toggle('done', completed.has(i));
+      el.querySelector('.lesson-num').textContent = completed.has(i) ? '✓' : (i + 1);
+    });
+    if (index > 0) completed.add(index - 1);
+    updateProgress();
+    document.getElementById('prevBtn').style.visibility = index === 0 ? 'hidden' : 'visible';
+    document.getElementById('nextBtn').textContent = index === lessons.length - 1 ? '🎉 Course Complete!' : 'Next Lesson →';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+  function changeLesson(dir) {
+    const next = current + dir;
+    if (next >= 0 && next < lessons.length) loadLesson(next);
+  }
+  function updateProgress() {
+    const pct = Math.round((completed.size / lessons.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '% complete';
+  }
+  loadLesson(0);
+</script>
+</body>
+</html>
