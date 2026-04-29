@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777442427469",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Lung cancer is one of the most common and deadly forms of cancer worldwide, with early detection and effective treatment being crucial for patient survival. The current methods of detection and treatment often rely on manual analysis of medical images and trial-and-error approaches, which can be time-consuming and may not always yield the best results.\n\nThis paper explores the application of artificial intelligence (AI) and machine learning (ML) techniques to improve the detection and treatment of lung cancer. The authors use machine learning algorithms to analyze medical images, such as X-rays and CT scans, to detect lung cancer at an early stage. They also use AI to develop personalized treatment plans for patients, taking into account their individual characteristics and medical history. The result is a more accurate and effective approach to lung cancer diagnosis and treatment.\n\nThe use of AI and ML in lung cancer diagnosis and treatment has significant implications for the field of oncology, as it has the potential to improve patient outcomes and reduce healthcare costs. For researchers, this paper opens up new avenues for investigation, such as the development of more sophisticated machine learning algorithms and the integration of AI with other medical imaging modalities. The paper also highlights the need for further research into the clinical applications of AI in lung cancer diagnosis and treatment.\n\nThe key innovation of this paper is the use of a deep learning-based approach to analyze medical images and develop personalized treatment plans, which allows for a more accurate and effective diagnosis and treatment of lung cancer. This approach has the potential to revolutionize the field of oncology and improve patient outcomes.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42050113/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\n— Engineering Intelligence | AI Engineer & Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-29",
+    "featured": true
+  },
+  {
     "id": "paper-1777442180220",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-29",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777441613150",
