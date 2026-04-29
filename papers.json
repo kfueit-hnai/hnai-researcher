@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777450967462",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Electroencephalogram emotion recognition based on state-space models combined with spatio-temporal feature\n\nEmotion recognition is a complex problem that has puzzled researchers for years, as it requires the ability to accurately identify and interpret human emotions, which can be subtle and dynamic. The inability to recognize emotions can lead to misunderstandings and miscommunications in various aspects of life, including personal and professional relationships.\n\nThis paper achieves a significant breakthrough in emotion recognition by utilizing electroencephalogram signals and combining state-space models with spatio-temporal features, resulting in a more accurate and efficient method for identifying emotions. The approach allows for a better understanding of the underlying neural mechanisms of emotions, enabling the development of more effective emotion recognition systems. By leveraging these advances, the paper provides a foundation for creating more sophisticated and human-like artificial intelligence systems.\n\nFor MS and PhD students in Pakistan and globally, this research matters because it provides a foundation for understanding the latest advances in artificial intelligence and machine learning, which can be applied to various fields, including healthcare, education, and finance. The paper offers valuable insights and methodologies that can be used to develop innovative solutions to real-world problems, making it an essential read for students and researchers looking to contribute to the field.\n\nThis paper differs from prior work in that it specifically focuses on the combination of state-space models and spatio-temporal features, which allows for a more detailed analysis of electroencephalogram signals and provides a more accurate representation of emotional states. \n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42037334/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-29",
+    "featured": true
+  },
+  {
     "id": "paper-1777450861783",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-29",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777449645928",
