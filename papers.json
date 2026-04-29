@@ -1,14 +1,29 @@
 [
   {
+    "id": "paper-1777441613150",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Lung cancer is one of the most common and deadly forms of cancer worldwide, with early detection being crucial for effective treatment and survival. The lack of accurate and timely diagnosis methods has led to a significant number of deaths, emphasizing the need for innovative solutions to address this issue.\n\nThis paper explores the application of artificial intelligence (AI) and machine learning (ML) techniques, which involve training computers to learn from data and make predictions or decisions, to improve lung cancer detection and treatment. The authors achieve this by utilizing AI algorithms to analyze medical images and patient data, allowing for earlier detection and personalized therapy recommendations. The paper demonstrates the potential of AI and ML in enhancing the accuracy and efficiency of lung cancer diagnosis and treatment.\n\nThe integration of AI and ML in lung cancer research has significant implications for the academic community, as it opens up new avenues for investigation and methodology development. This paper contributes to the growing body of research on AI applications in healthcare, providing valuable insights and directions for future studies. The exploration of AI and ML techniques in this context also highlights the importance of interdisciplinary collaboration and knowledge sharing between medical and engineering fields.\n\nThe key innovation in this paper lies in its focus on leveraging AI and ML to facilitate personalized therapy for lung cancer patients, which sets it apart from existing research that primarily concentrates on detection and diagnosis. By developing AI-driven systems that can analyze individual patient profiles and medical histories, the authors pave the way for more targeted and effective treatment approaches.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42050113/\n\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\n— Engineering Intelligence | AI Engineer & Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-29",
+    "featured": true
+  },
+  {
     "id": "sample-001",
     "title": "Attention Is All You Need",
-    "authors": ["Ashish Vaswani", "Noam Shazeer", "Niki Parmar"],
+    "authors": [
+      "Ashish Vaswani",
+      "Noam Shazeer",
+      "Niki Parmar"
+    ],
     "summary": "Introduces the Transformer architecture, which relies entirely on self-attention mechanisms instead of recurrence or convolutions. This foundational paper changed the trajectory of deep learning and is the basis of all modern LLMs including GPT and BERT.",
     "category": "Deep Learning",
     "source": "ArXiv",
     "arxiv_id": "1706.03762",
     "url": "https://arxiv.org/abs/1706.03762",
     "date": "2024-01-01",
-    "featured": true
+    "featured": false
   }
 ]
