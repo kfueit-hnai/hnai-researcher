@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777446021850",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Artificial Intelligence in Lung Cancer: From Early Detection to Personalized Therapy\n\nLung cancer is a major health concern worldwide, with early detection being crucial for effective treatment and survival rates. The current methods of detection and diagnosis are often invasive, time-consuming, and not entirely accurate, leading to delayed treatment and poor patient outcomes.\n\nThis paper explores the use of artificial intelligence and machine learning in lung cancer diagnosis and treatment, explaining how these technologies can help improve detection rates and personalize therapy for patients. The authors discuss how machine learning algorithms can analyze medical images and patient data to identify patterns and make predictions, allowing for more accurate diagnoses and targeted treatments. The paper also delves into the potential of AI in streamlining clinical workflows and enhancing patient care.\n\nFor MS and PhD students in Pakistan and globally, this paper offers valuable insights into the application of AI and machine learning in healthcare, providing a starting point for research and development in this critical area. The paper's focus on lung cancer diagnosis and treatment also highlights the potential for AI to address specific health challenges in Pakistan and other countries, where healthcare resources may be limited.\n\nThis paper stands out from prior work in its comprehensive review of AI and machine learning techniques in lung cancer diagnosis and treatment, covering topics such as image analysis, natural language processing, and predictive modeling. The authors' approach to integrating AI and machine learning with clinical expertise and patient data also sets this paper apart from other studies in the field.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42050113/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-29",
+    "featured": true
+  },
+  {
     "id": "paper-1777443409703",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-29",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777443072243",
