@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777442180220",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Lung cancer is one of the most common and deadly forms of cancer worldwide, with early detection being crucial for effective treatment and survival. The current methods of detection, such as manual examination of medical images, can be time-consuming and prone to human error, highlighting the need for more efficient and accurate diagnostic tools.\n\nThis paper explores the application of artificial intelligence (AI) and machine learning (ML) (computer algorithms that can learn from data) in lung cancer diagnosis and treatment. The authors demonstrate how AI can be used to analyze medical images, such as X-rays and CT scans, to detect lung cancer at an early stage, and how ML can be used to develop personalized treatment plans for patients. The paper shows that AI can help doctors to identify high-risk patients and provide targeted therapy, leading to better treatment outcomes.\n\nThe integration of AI and ML in lung cancer diagnosis and treatment has significant implications for the field of oncology, as it can help to address the current limitations of manual diagnosis and treatment methods. This paper fills a gap in the existing literature by providing a comprehensive overview of the current state of AI and ML in lung cancer research, and it opens up new avenues for research in this area, particularly in the development of more accurate and efficient diagnostic tools.\n\nThe key innovation of this paper is the use of a specific type of ML algorithm, which allows for the analysis of large amounts of medical data and the identification of patterns that may not be apparent to human doctors. This approach enables the development of more accurate and personalized treatment plans, and it has the potential to revolutionize the field of lung cancer diagnosis and treatment.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42050113/\n\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\n— Engineering Intelligence | AI Engineer & Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-29",
+    "featured": true
+  },
+  {
     "id": "paper-1777441613150",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-29",
-    "featured": true
+    "featured": false
   },
   {
     "id": "sample-001",
