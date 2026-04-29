@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777450861783",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Revolutionizing Multimorbidity Care: A Narrative Review on Artificial Intelligence Applications\n\nMultimorbidity, or the presence of multiple chronic conditions in an individual, poses significant challenges to healthcare systems worldwide, requiring complex and personalized care plans. The management of multimorbidity is further complicated by the need for healthcare providers to consider multiple factors, including patient history, medication interactions, and potential treatment outcomes, making it a daunting task for even the most experienced healthcare professionals.\n\nThis paper explores the potential of artificial intelligence and machine learning to improve multimorbidity care by analyzing patient data, identifying patterns, and making predictions about treatment outcomes. By leveraging these technologies, healthcare providers can develop more effective and personalized treatment plans, leading to better patient outcomes and improved quality of life. The authors also discuss the potential of AI and ML to streamline clinical workflows and reduce the administrative burden on healthcare providers.\n\nFor MS and PhD students in Pakistan and globally, this research offers valuable insights into the application of AI and ML in healthcare, providing a foundation for further research and innovation in this field. The paper's focus on multimorbidity care also highlights the potential for AI and ML to address some of the most pressing healthcare challenges in Pakistan and other developing countries, where access to quality healthcare is often limited.\n\nThis paper stands out from prior work in its comprehensive review of AI and ML applications in multimorbidity care, providing a detailed analysis of the current state of research in this field and identifying areas for future study. The authors' narrative review approach also allows for a more nuanced understanding of the complex relationships between AI, ML, and multimorbidity care.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42040916/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-29",
+    "featured": true
+  },
+  {
     "id": "paper-1777449645928",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-29",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777449240156",
