@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777454862148",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Deep Learning-Based Prediction System for Surgical Difficulty in Rectal Cancer Patients Using MRI Pelvimetry\n\nSurgical difficulty in rectal cancer patients is a significant concern as it can lead to increased complications and morbidity rates. Accurate prediction of surgical difficulty is crucial for preoperative planning and decision-making, allowing surgeons to take necessary precautions and optimize patient outcomes.\n\nThis paper presents a deep learning-based system that uses MRI pelvimetry to predict surgical difficulty in rectal cancer patients. The system analyzes MRI images to extract relevant features and uses machine learning algorithms to predict the level of difficulty. This approach enables surgeons to make more informed decisions and improve patient care by providing a more accurate prediction of surgical difficulty.\n\nFor MS and PhD students in Pakistan and globally, this paper offers valuable insights into the application of deep learning in medical imaging and its potential to improve patient outcomes. The paper's findings can be used to develop more accurate and reliable prediction systems, which can be particularly useful in resource-constrained healthcare settings where access to advanced medical facilities is limited.\n\nThis paper differs from prior work in its use of MRI pelvimetry, which provides a more detailed and accurate assessment of the pelvis and its surrounding structures. The paper's approach also allows for the analysis of a larger dataset, which can lead to more robust and reliable predictions.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42044985/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-29",
+    "featured": true
+  },
+  {
     "id": "paper-1777450967462",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-29",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777450861783",
