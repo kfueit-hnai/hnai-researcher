@@ -1,0 +1,14 @@
+[
+  {
+    "id": "sample-001",
+    "title": "Attention Is All You Need",
+    "authors": ["Ashish Vaswani", "Noam Shazeer", "Niki Parmar"],
+    "summary": "Introduces the Transformer architecture, which relies entirely on self-attention mechanisms instead of recurrence or convolutions. This foundational paper changed the trajectory of deep learning and is the basis of all modern LLMs including GPT and BERT.",
+    "category": "Deep Learning",
+    "source": "ArXiv",
+    "arxiv_id": "1706.03762",
+    "url": "https://arxiv.org/abs/1706.03762",
+    "date": "2024-01-01",
+    "featured": true
+  }
+]

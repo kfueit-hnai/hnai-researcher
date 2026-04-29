@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Engineering Intelligence — Research Archive | HNAI</title>
+  <meta name="description" content="Curated AI/ML research papers broken down for students and researchers. One paper a day, every day." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0c10;
+      --surface: #111318;
+      --surface2: #181c24;
+      --border: #1f2533;
+      --accent: #4f8ef7;
+      --accent2: #e8c547;
+      --text: #e8eaf0;
+      --muted: #7a8099;
+      --arxiv: #b55cf5;
+      --pubmed: #3dbf8a;
+      --openalx: #f5834a;
+      --tag-bg: rgba(79,142,247,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,12,16,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2rem; }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: 5rem 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: var(--accent2);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── STATS ROW ── */
+    .stats-row {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+      padding: 1.5rem 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .stat { display: flex; flex-direction: column; gap: 0.2rem; }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+    }
+
+    /* ── CONTROLS ── */
+    .controls {
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      padding: 0 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.6rem 1rem;
+    }
+
+    .search-box svg { color: var(--muted); flex-shrink: 0; }
+
+    .search-box input {
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.85rem;
+      width: 100%;
+    }
+
+    .search-box input::placeholder { color: var(--muted); }
+
+    .filter-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.75rem;
+      border-radius: 2px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip:hover, .chip.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(79,142,247,0.08);
+    }
+
+    /* ── PAPER GRID ── */
+    .grid-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .papers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    /* ── PAPER CARD ── */
+    .paper-card {
+      background: var(--surface);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .paper-card:hover { background: var(--surface2); }
+
+    .paper-card.featured {
+      border-left: 2px solid var(--accent2);
+    }
+
+    .paper-card.featured::before {
+      content: 'LATEST';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--accent2);
+      background: rgba(232,197,71,0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .source-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    .source-badge.arxiv  { color: var(--arxiv);  background: rgba(181,92,245,0.1); }
+    .source-badge.pubmed { color: var(--pubmed);  background: rgba(61,191,138,0.1); }
+    .source-badge.openalx{ color: var(--openalx); background: rgba(245,131,74,0.1); }
+
+    .card-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .card-authors {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-summary {
+      font-size: 0.82rem;
+      color: #9aa0b4;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--accent);
+      background: var(--tag-bg);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+
+    .card-link {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.2s;
+    }
+
+    .card-link:hover { color: var(--accent); }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    /* ── LOADING ── */
+    .loading-pulse {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .skeleton {
+      background: var(--surface);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .skel-line {
+      background: var(--surface2);
+      border-radius: 2px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    .paper-card {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeUp 0.4s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero { padding: 3rem 1.2rem 2rem; }
+      .stats-row { padding: 1.2rem; gap: 1.2rem; }
+      .controls, .grid-wrapper { padding: 0 1.2rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-brand">HNAI // ENG.INTELLIGENCE</a>
+    <div class="nav-links">
+      <a href="index.html">About</a>
+      <a href="research-bank.html" class="active">Research Archive</a>
+      <a href="https://www.facebook.com/EngineeringIntelligence" target="_blank">Facebook</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">// HNAI Research Archive</p>
+    <h1>Engineering <span>Intelligence</span><br/>Research Bank</h1>
+    <p class="hero-sub">Curated AI &amp; ML papers — broken down for students and researchers in Pakistan and beyond. One paper a day, every day.</p>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-row" id="stats-row">
+    <div class="stat">
+      <span class="stat-num" id="stat-total">—</span>
+      <span class="stat-label">Papers Archived</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num" id="stat-topics">—</span>
+      <span class="stat-label">Topics Covered</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num" id="stat-sources">3</span>
+      <span class="stat-label">Sources</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num" id="stat-streak">—</span>
+      <span class="stat-label">Days Running</span>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <div class="search-box">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="search-input" placeholder="Search papers, authors, topics…" />
+    </div>
+    <div class="filter-chips" id="filter-chips">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="ArXiv">ArXiv</button>
+      <button class="chip" data-filter="PubMed">PubMed</button>
+      <button class="chip" data-filter="OpenAlex">OpenAlex</button>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid-wrapper">
+    <div id="papers-container">
+      <!-- skeleton while loading -->
+      <div class="loading-pulse" id="skeleton">
+        <div class="skeleton">
+          <div class="skel-line" style="height:12px;width:40%"></div>
+          <div class="skel-line" style="height:18px;width:90%"></div>
+          <div class="skel-line" style="height:18px;width:70%"></div>
+          <div class="skel-line" style="height:12px;width:55%"></div>
+          <div class="skel-line" style="height:60px;width:100%"></div>
+        </div>
+        <div class="skeleton">
+          <div class="skel-line" style="height:12px;width:35%"></div>
+          <div class="skel-line" style="height:18px;width:85%"></div>
+          <div class="skel-line" style="height:18px;width:65%"></div>
+          <div class="skel-line" style="height:12px;width:50%"></div>
+          <div class="skel-line" style="height:60px;width:100%"></div>
+        </div>
+        <div class="skeleton">
+          <div class="skel-line" style="height:12px;width:45%"></div>
+          <div class="skel-line" style="height:18px;width:80%"></div>
+          <div class="skel-line" style="height:18px;width:75%"></div>
+          <div class="skel-line" style="height:12px;width:60%"></div>
+          <div class="skel-line" style="height:60px;width:100%"></div>
+        </div>
+      </div>
+      <div class="papers-grid" id="papers-grid" style="display:none"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>HNAI · Engineering Intelligence · <a href="https://www.facebook.com/EngineeringIntelligence" target="_blank">Facebook</a> · Powered by ArXiv, PubMed &amp; OpenAlex</p>
+    <p style="margin-top:0.5rem;opacity:0.5">Archive auto-updated daily via n8n automation</p>
+  </footer>
+
+<script>
+  // ── CONFIG ──────────────────────────────────────────────
+  // UPDATE THIS to your actual GitHub raw URL
+  const PAPERS_JSON_URL = 'https://raw.githubusercontent.com/kfueit-hnai/hnai-researcher/main/papers.json';
+  // ────────────────────────────────────────────────────────
+
+  let allPapers = [];
+  let activeFilter = 'all';
+  let searchQuery = '';
+
+  async function loadPapers() {
+    try {
+      const res = await fetch(PAPERS_JSON_URL + '?t=' + Date.now());
+      allPapers = await res.json();
+    } catch (e) {
+      // Fallback: try relative path (when file is in same repo)
+      try {
+        const res2 = await fetch('./papers.json?t=' + Date.now());
+        allPapers = await res2.json();
+      } catch (e2) {
+        allPapers = [];
+      }
+    }
+
+    // Sort newest first, featured first
+    allPapers.sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    updateStats();
+    renderPapers();
+    document.getElementById('skeleton').style.display = 'none';
+    document.getElementById('papers-grid').style.display = 'grid';
+  }
+
+  function updateStats() {
+    document.getElementById('stat-total').textContent = allPapers.length;
+    const topics = new Set(allPapers.map(p => p.category)).size;
+    document.getElementById('stat-topics').textContent = topics;
+    // Days running: difference from earliest paper
+    if (allPapers.length > 0) {
+      const dates = allPapers.map(p => new Date(p.date));
+      const earliest = new Date(Math.min(...dates));
+      const days = Math.floor((Date.now() - earliest) / 86400000) + 1;
+      document.getElementById('stat-streak').textContent = days;
+    }
+  }
+
+  function getFilteredPapers() {
+    return allPapers.filter(p => {
+      const matchFilter = activeFilter === 'all' || p.source === activeFilter;
+      const q = searchQuery.toLowerCase();
+      const matchSearch = !q ||
+        p.title.toLowerCase().includes(q) ||
+        p.summary.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        (p.authors || []).join(' ').toLowerCase().includes(q);
+      return matchFilter && matchSearch;
+    });
+  }
+
+  function renderPapers() {
+    const grid = document.getElementById('papers-grid');
+    const filtered = getFilteredPapers();
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `<div class="empty-state">No papers found. Try a different filter or search term.</div>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map((p, i) => {
+      const srcClass = p.source?.toLowerCase().replace(' ', '') || 'arxiv';
+      const authors = (p.authors || []).join(', ') || 'Authors unknown';
+      const dateStr = p.date ? new Date(p.date).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' }) : '';
+      return `
+        <div class="paper-card ${p.featured ? 'featured' : ''}" style="animation-delay:${i * 0.04}s">
+          <div class="card-top">
+            <span class="source-badge ${srcClass}">${p.source || 'ArXiv'}</span>
+            <span class="card-date">${dateStr}</span>
+          </div>
+          <div class="card-title">${escHtml(p.title)}</div>
+          <div class="card-authors">${escHtml(authors)}</div>
+          <div class="card-summary">${escHtml(p.summary)}</div>
+          <div class="card-footer">
+            <span class="card-tag">${escHtml(p.category || 'AI/ML')}</span>
+            <a href="${p.url || '#'}" target="_blank" class="card-link">
+              Read paper
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── FILTER CHIPS ──
+  document.getElementById('filter-chips').addEventListener('click', e => {
+    if (!e.target.classList.contains('chip')) return;
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    e.target.classList.add('active');
+    activeFilter = e.target.dataset.filter;
+    renderPapers();
+  });
+
+  // ── SEARCH ──
+  let searchTimer;
+  document.getElementById('search-input').addEventListener('input', e => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      searchQuery = e.target.value;
+      renderPapers();
+    }, 200);
+  });
+
+  loadPapers();
+</script>
+</body>
+</html>
