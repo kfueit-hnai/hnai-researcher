@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777443072243",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Artificial Intelligence in Lung Cancer: From Early Detection to Personalized Therapy\n\nLung cancer is a leading cause of death worldwide and its early detection is crucial for effective treatment. The current methods of detection and diagnosis are often invasive and not very accurate, which leads to delayed treatment and poor patient outcomes.\n\nThis paper explores the use of artificial intelligence and machine learning to improve the detection and diagnosis of lung cancer. It discusses how these technologies can be used to analyze medical images and patient data to identify patterns and make predictions about the likelihood of cancer. The paper also explains how these technologies can be used to personalize treatment for individual patients.\n\nFor MS and PhD students in Pakistan and globally, this paper provides valuable insights into the application of artificial intelligence and machine learning in the field of oncology. It highlights the potential for these technologies to improve patient outcomes and reduce healthcare costs, making it an exciting area of research with significant potential for impact.\n\nThis paper is different from prior work in that it focuses on the practical applications of artificial intelligence and machine learning in lung cancer diagnosis and treatment, rather than just theoretical models. It provides a comprehensive overview of the current state of research in this area and identifies potential avenues for future research.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42050113/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-29",
+    "featured": true
+  },
+  {
     "id": "paper-1777442427469",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-29",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777442180220",
