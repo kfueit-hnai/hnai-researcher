@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777449240156",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Artificial Intelligence in Lung Cancer: From Early Detection to Personalized Therapy\n\nLung cancer is a major health concern worldwide, with early detection being crucial for effective treatment and survival rates. The current methods of detection and diagnosis are often invasive, costly, and not always accurate, leading to delayed treatment and poor patient outcomes.\n\nThis paper explores the use of artificial intelligence and machine learning to improve lung cancer detection and treatment. It discusses how these technologies can be used to analyze medical images and patient data to detect lung cancer at an early stage, and how they can help personalize treatment plans for individual patients. The paper also explains how machine learning algorithms can be trained to learn from large datasets and make predictions about patient outcomes.\n\nFor MS and PhD students in Pakistan and globally, this paper provides valuable insights into the application of artificial intelligence and machine learning in the field of oncology, and highlights the potential for these technologies to improve healthcare outcomes in developing countries. By studying this paper, students can gain a deeper understanding of the potential of AI and machine learning to address real-world health problems and develop innovative solutions.\n\nThis paper is different from prior work in that it focuses on the practical applications of artificial intelligence and machine learning in lung cancer detection and treatment, rather than just theoretical concepts. It provides a comprehensive overview of the current state of research in this field and highlights the potential for AI and machine learning to improve patient outcomes.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42050113/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-29",
+    "featured": true
+  },
+  {
     "id": "paper-1777446021850",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-29",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777443409703",
