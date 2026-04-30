@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777569844608",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Detection of Valve Vegetations in Native and Prosthetic Valves using Echocardiographic Radiomics and Deep Learning on Transesophageal Echocardiography Images\n\nValve vegetations are a serious condition that can lead to severe complications if left undetected, and current detection methods often rely on manual analysis of echocardiography images, which can be time-consuming and prone to human error. The accurate and timely detection of valve vegetations is crucial for the effective management of patients with this condition, and it requires the development of more advanced and automated detection methods.\n\nThis paper presents a new approach to detecting valve vegetations using a combination of echocardiographic radiomics and deep learning on transesophageal echocardiography images. The authors have developed a system that can automatically analyze these images and detect valve vegetations with high accuracy, which could potentially improve patient outcomes by enabling earlier diagnosis and treatment. The system uses machine learning algorithms to learn patterns in the images and identify potential valve vegetations, which are then verified by a radiomics analysis.\n\nThis research is particularly relevant for MS and PhD students in Pakistan and globally who are working in the field of biomedical engineering or artificial intelligence, as it demonstrates the potential of deep learning and radiomics to improve medical imaging analysis. The paper provides a valuable resource for these students, as it presents a concrete example of how these technologies can be applied to real-world medical problems, and it highlights the potential for future research in this area.\n\nThis paper is distinct from prior work in that it focuses specifically on the detection of valve vegetations in both native and prosthetic valves, using a unique combination of deep learning and radiomics analysis. \n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42057985/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-30",
+    "featured": true
+  },
+  {
     "id": "paper-1777528326621",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-30",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777454862148",
