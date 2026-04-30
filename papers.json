@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777528326621",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Panoramic Insights: Predicting Age and Gender from Dental X-Rays Using Deep Learning Models\n\nDental X-rays are a common diagnostic tool used by dentists to examine the health of teeth and surrounding tissues, but they also contain valuable information about a person's age and gender. Predicting age and gender from dental X-rays can be useful in forensic investigations, where it can help identify human remains, and in medical research, where it can help researchers better understand the relationship between oral health and overall health.\n\nThis paper explores the use of deep learning models to predict age and gender from dental X-rays, and it shows that these models can achieve high accuracy in making these predictions. The authors used a large dataset of dental X-rays to train and test their models, and they found that the models were able to predict age and gender with a high degree of accuracy. This is significant because it demonstrates the potential of deep learning models to extract valuable information from medical images.\n\nFor MS and PhD students in Pakistan and around the world, this paper is important because it demonstrates the potential of artificial intelligence and machine learning to improve healthcare outcomes. By developing models that can predict age and gender from dental X-rays, researchers can help clinicians make more accurate diagnoses and develop more effective treatment plans, which can improve patient outcomes and save lives.\n\nThis paper is different from prior work because it uses a large dataset of dental X-rays to train and test deep learning models, and it achieves high accuracy in predicting age and gender. The authors also provide a detailed analysis of the results, which can help other researchers understand the strengths and limitations of their approach.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42050079/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-04-30",
+    "featured": true
+  },
+  {
     "id": "paper-1777454862148",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-29",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777450967462",
