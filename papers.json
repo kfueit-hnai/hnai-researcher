@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777650012759",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Deep Learning of Histopathology Predicts Outcomes After Surgery for Pancreatic Cancer\n\nPancreatic cancer is a highly aggressive and deadly disease with limited treatment options, making accurate prediction of outcomes after surgery crucial for improving patient care. The lack of reliable methods for predicting patient outcomes after surgery has hindered the development of effective treatment plans, leading to poor prognosis and high mortality rates.\n\nThis paper presents a significant achievement in the field of artificial intelligence and machine learning, where deep learning models are used to analyze histopathology images and predict outcomes after surgery for pancreatic cancer. The authors have developed a system that can learn from histopathology images and provide accurate predictions of patient outcomes, which can be used to inform treatment decisions and improve patient care. This system has the potential to revolutionize the field of oncology by providing clinicians with a powerful tool for predicting patient outcomes.\n\nFor MS and PhD students in Pakistan and globally, this paper provides a valuable resource for understanding the application of deep learning in medical imaging and its potential to improve patient outcomes. The paper offers insights into the development of AI-powered systems for medical diagnosis and treatment, which can be used to develop innovative solutions for healthcare challenges in Pakistan and other developing countries.\n\nThis paper differs from prior work in its use of deep learning models to analyze histopathology images and predict patient outcomes, which has not been extensively explored in the field of pancreatic cancer research. The authors' approach has shown promising results, demonstrating the potential of deep learning models to improve patient outcomes.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42054617/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-05-01",
+    "featured": true
+  },
+  {
     "id": "paper-1777569844608",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-04-30",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777528326621",
