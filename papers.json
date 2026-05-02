@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777746688757",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Construction and validation of a multimodal MRI-based deep learning model for early differential diagnosis of prostate cancer in the PSA gray zone: a retrospective cohort study\n\nThe physical problem of anatomical ambiguity in 2D radiography is a significant challenge in medical imaging, where the loss of buccolingual depth and geometric distortion lead to shadow overlap, obscuring the spatial relationship between impacted teeth and adjacent lateral incisor roots. This limitation hinders the accurate diagnosis and treatment planning of various dental and maxillofacial conditions, underscoring the need for innovative solutions that can overcome these constraints. The development of advanced imaging modalities and machine learning algorithms has the potential to address this issue, enabling the creation of more accurate and reliable diagnostic tools.\n\nThe Cross-Modality Supervision framework is a technical innovation that has been proposed to address the limitations of 2D radiography. This approach involves training a convolutional neural network (CNN) on 2D pixel intensities, but optimizing it against 3D voxel-verified ground truth from cone beam computed tomography (CBCT). This allows the model to predict hidden 3D morphology from a 2D source with surgical precision, effectively bridging the gap between 2D and 3D imaging modalities. By leveraging the strengths of both 2D and 3D imaging, this framework enables the development of more accurate and reliable diagnostic tools, with significant implications for clinical practice.\n\nThe research methodology employed in this study serves as a template for High-to-Low Fidelity Knowledge Transfer, where expensive, high-fidelity datasets are used to supervise the feature extraction of accessible, low-fidelity hardware in resource-limited environments. This approach enables the creation of more accurate and reliable diagnostic models, even in settings where high-fidelity imaging modalities are not available. By leveraging the strengths of high-fidelity datasets and transferring this knowledge to low-fidelity hardware, this methodology has the potential to improve diagnostic accuracy and treatment outcomes in a wide range of clinical settings.\n\nThe technical distinction of this approach lies in the elimination of human observer bias, which is a significant limitation of traditional diagnostic methods. By using 3D benchmarks, the model identifies objective anatomical truth, rather than replicating the subjective interpretive errors of human radiologists. This approach ensures that the diagnostic model is based on objective, verifiable criteria, rather than subjective interpretation, which can vary significantly between observers. The use of 3D benchmarks also enables the model to learn from a more comprehensive and accurate representation of anatomical structures, leading to improved diagnostic accuracy and reliability.\n\nThe clinical utility of this approach is significant, particularly in the context of precision treatment planning. By automating the measurement of angulation and distance to the midline, this approach facilitates predictable orthodontic traction and reduces surgical exploration time. This has significant implications for clinical practice, where accurate and reliable diagnostic tools can improve treatment outcomes and reduce the risk of complications. The development of more accurate and reliable diagnostic models has the potential to revolutionize clinical practice, enabling healthcare professionals to provide more effective and efficient care to their patients.\n\nhttps://pubmed.ncbi.nlm.nih.gov/42063732/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-05-02",
+    "featured": true
+  },
+  {
     "id": "paper-1777702851524",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-05-02",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777701862248",
