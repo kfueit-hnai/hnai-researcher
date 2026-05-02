@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777702851524",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Deep Learning-Based Comparison of Knee Minimum Joint Space Width in Patients with Rheumatoid Arthritis and Osteoarthritis Before Total Knee Arthroplasty\n\nThe physical problem of anatomical ambiguity in 2D radiography is a significant challenge in medical imaging, where the loss of buccolingual depth and geometric distortion lead to shadow overlap, obscuring the spatial relationship between impacted teeth and adjacent lateral incisor roots. This ambiguity arises from the inherent limitations of 2D imaging, where the complex three-dimensional anatomy of the knee joint is projected onto a two-dimensional plane, resulting in the loss of crucial spatial information. Consequently, the accurate assessment of knee joint space width, a critical parameter in the diagnosis and treatment of rheumatoid arthritis and osteoarthritis, is compromised.\n\nThe Cross-Modality Supervision framework presents a technical innovation that addresses this challenge by training a convolutional neural network (CNN) on 2D pixel intensities, while optimizing it against 3D voxel-verified ground truth from cone beam computed tomography (CBCT). This approach enables the model to predict hidden 3D morphology from a 2D source with surgical precision, effectively bridging the gap between 2D imaging and 3D reality. By leveraging the strengths of both 2D and 3D imaging modalities, the Cross-Modality Supervision framework achieves a higher level of accuracy and reliability in the measurement of knee minimum joint space width.\n\nThe research methodology employed in this study serves as a template for High-to-Low Fidelity Knowledge Transfer, where expensive, high-fidelity datasets are used to supervise the feature extraction of accessible, low-fidelity hardware in resource-limited environments. This approach facilitates the development of accurate and reliable models that can operate in resource-constrained settings, making it an attractive solution for a wide range of medical imaging applications. By leveraging the strengths of high-fidelity datasets, the model can learn to extract relevant features from low-fidelity data, thereby enhancing its performance and generalizability.\n\nThe technical distinction of this study lies in the elimination of human observer bias, which is a significant limitation of traditional imaging approaches. By using 3D benchmarks, the model identifies objective anatomical truth, rather than replicating the subjective interpretive errors of human radiologists. This ensures that the measurements obtained are accurate and reliable, providing a solid foundation for clinical decision-making. In contrast to prior work, which often relied on human interpretation and was susceptible to bias, this study presents a more objective and reproducible approach to medical imaging.\n\nThe clinical utility of this study is significant, as it enables precision treatment planning for patients with rheumatoid arthritis and osteoarthritis. By automating the measurement of angulation and distance to the midline, the model facilitates predictable orthodontic traction and reduces surgical exploration time. This, in turn, leads to improved patient outcomes, reduced morbidity, and enhanced quality of life. The study demonstrates the potential of deep learning-based approaches to transform the field of medical imaging, enabling more accurate and reliable diagnoses, and ultimately, better patient care.\n\nhttps://pubmed.ncbi.nlm.nih.gov/42067217/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-05-02",
+    "featured": true
+  },
+  {
     "id": "paper-1777701862248",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-05-02",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777650012759",
