@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777701862248",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Evaluation of panoramic radiography for artificial intelligence-based assessment of impacted maxillary canines using cone-beam computed tomography as reference\n\nImpacted maxillary canines are a common problem in dental health that can lead to various complications if not diagnosed and treated properly. The diagnosis of impacted maxillary canines requires accurate imaging techniques to assess the position and morphology of the impacted teeth, which can be challenging using traditional radiography methods.\n\nThis paper explores the use of artificial intelligence and machine learning to assess impacted maxillary canines using panoramic radiography, with cone-beam computed tomography as a reference. The authors have developed an AI-based system that can evaluate panoramic radiographs and provide accurate assessments of impacted maxillary canines. This system has the potential to improve the diagnosis and treatment of impacted maxillary canines by providing more accurate and reliable assessments.\n\nThis research is particularly relevant for MS and PhD students in Pakistan and globally, as it highlights the potential of artificial intelligence and machine learning in improving dental health outcomes. The paper provides valuable insights into the application of AI and ML in dental health, which can be useful for students and researchers working in this field.\n\nThis paper is distinct from prior work in that it uses cone-beam computed tomography as a reference to evaluate the accuracy of AI-based assessments of impacted maxillary canines. The use of CBCT as a reference provides a more accurate and reliable benchmark for evaluating the performance of the AI-based system.\n\nRead the paper: https://pubmed.ncbi.nlm.nih.gov/42056967/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-05-02",
+    "featured": true
+  },
+  {
     "id": "paper-1777650012759",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-05-01",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777569844608",
