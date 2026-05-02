@@ -1,5 +1,16 @@
 [
   {
+    "id": "paper-1777747184603",
+    "title": "AI Research Paper",
+    "authors": "Unknown",
+    "summary": "Raman spectroscopy in renal analysis: Technologies, applications, and advancements.\n\nThe physical problem of anatomical ambiguity in 2D radiography is a significant challenge in medical imaging, where the loss of buccolingual depth and geometric distortion lead to shadow overlap, obscuring the spatial relationship between impacted teeth and adjacent lateral incisor roots. This ambiguity arises from the inherent limitations of 2D imaging modalities, which fail to capture the complex three-dimensional anatomy of the dental structure, resulting in difficulties in accurate diagnosis and treatment planning.\n\nThe Cross-Modality Supervision framework represents a significant technical innovation, wherein a convolutional neural network (CNN) is trained on 2D pixel intensities but optimized against 3D voxel-verified ground truth from cone beam computed tomography (CBCT). This approach enables the model to predict hidden 3D morphology from a 2D source with surgical precision, effectively bridging the gap between 2D imaging and 3D reality. By leveraging the high-fidelity information from CBCT, the model can learn to extract relevant features from 2D images, allowing for accurate predictions of 3D anatomical structures.\n\nThis methodology can be framed as a template for High-to-Low Fidelity Knowledge Transfer, where expensive, high-fidelity datasets are used to supervise the feature extraction of accessible, low-fidelity hardware in resource-limited environments. This approach is particularly useful in medical imaging, where high-fidelity datasets may be scarce or difficult to obtain, but low-fidelity images are abundant. By transferring knowledge from high-fidelity to low-fidelity datasets, this methodology enables the development of accurate models that can operate in resource-constrained settings.\n\nThe elimination of human observer bias is a significant technical distinction of this approach, as it ensures that the model identifies objective anatomical truth rather than replicating the subjective interpretive errors of human radiologists. In contrast to prior work, which often relied on human-annotated datasets, this approach uses 3D benchmarks to evaluate model performance, providing an objective measure of accuracy. This is particularly important in medical imaging, where small errors in diagnosis or treatment planning can have significant consequences.\n\nThe clinical utility of this approach lies in its role in Precision Treatment Planning, where automating the measurement of angulation and distance to the midline facilitates predictable orthodontic traction and reduces surgical exploration time. By providing accurate predictions of 3D anatomical structures, this approach enables clinicians to develop personalized treatment plans that take into account the unique anatomy of each patient, leading to improved outcomes and reduced complications.\n\nhttps://pubmed.ncbi.nlm.nih.gov/42066712/\n#HNAIResearcher #AIResearch #MachineLearning #ResearchPaper #PhDLife #MSStudents #DeepLearning\nEngineering Intelligence | AI Engineer and Researcher",
+    "category": "AI/ML",
+    "source": "ArXiv",
+    "url": "#",
+    "date": "2026-05-02",
+    "featured": true
+  },
+  {
     "id": "paper-1777746688757",
     "title": "AI Research Paper",
     "authors": "Unknown",
@@ -8,7 +19,7 @@
     "source": "ArXiv",
     "url": "#",
     "date": "2026-05-02",
-    "featured": true
+    "featured": false
   },
   {
     "id": "paper-1777702851524",
